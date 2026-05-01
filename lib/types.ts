@@ -15,6 +15,7 @@ export type Event = {
   id: string
   title: string
   slug: string
+  event_type: 'cerimonia' | 'vivencia'
   description: string | null
   date: string
   location_name: string

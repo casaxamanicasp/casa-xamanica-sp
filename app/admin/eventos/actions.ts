@@ -23,9 +23,12 @@ export async function upsertEvent(formData: FormData) {
   const schedule = JSON.parse(formData.get('schedule') as string ?? '[]')
   const medicines = (formData.get('medicines') as string ?? '').split(',').map((m) => m.trim()).filter(Boolean)
 
+  const eventType = (formData.get('event_type') as string) || 'cerimonia'
+
   const payload = {
     title,
     slug,
+    event_type: eventType,
     description: formData.get('description') as string,
     date: formData.get('date') as string,
     location_name: formData.get('location_name') as string,
@@ -52,5 +55,6 @@ export async function upsertEvent(formData: FormData) {
 
   revalidatePath('/admin/eventos')
   revalidatePath('/eventos')
+  revalidatePath('/vivencias')
   redirect('/admin/eventos')
 }

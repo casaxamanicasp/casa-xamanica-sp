@@ -8,7 +8,7 @@ export default async function AdminEventosPage() {
   const supabase = createAdminClient()
   const { data: events } = await supabase
     .from('events')
-    .select('id, title, date, spots_total, spots_available, is_active, pricing_tiers')
+    .select('id, title, date, spots_total, spots_available, is_active, pricing_tiers, event_type')
     .order('date', { ascending: false })
 
   return (
@@ -27,7 +27,7 @@ export default async function AdminEventosPage() {
         <table className="w-full text-sm">
           <thead className="bg-[--color-floresta-escuro] text-[--color-bege]">
             <tr>
-              {['Evento', 'Data', 'Vagas', 'Valor', 'Status', 'Ações'].map((h) => (
+              {['Tipo', 'Evento', 'Data', 'Vagas', 'Valor', 'Status', 'Ações'].map((h) => (
                 <th key={h} className="text-left px-4 py-3 text-xs font-bold uppercase tracking-wide">{h}</th>
               ))}
             </tr>
@@ -37,6 +37,11 @@ export default async function AdminEventosPage() {
               const price = event.pricing_tiers?.[0]?.price_cents ?? 0
               return (
                 <tr key={event.id} className="hover:bg-gray-50">
+                  <td className="px-4 py-3">
+                    <span className={`text-xs font-bold px-2 py-1 rounded-full ${event.event_type === 'vivencia' ? 'bg-emerald-100 text-emerald-700' : 'bg-orange-100 text-orange-700'}`}>
+                      {event.event_type === 'vivencia' ? 'Vivência' : 'Cerimônia'}
+                    </span>
+                  </td>
                   <td className="px-4 py-3 font-medium text-[--color-floresta-escuro] max-w-[200px] truncate">{event.title}</td>
                   <td className="px-4 py-3 text-gray-600">{format(new Date(event.date), "dd/MM/yyyy HH:mm", { locale: ptBR })}</td>
                   <td className="px-4 py-3 text-gray-600">{event.spots_available}/{event.spots_total}</td>

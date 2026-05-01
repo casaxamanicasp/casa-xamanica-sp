@@ -24,6 +24,28 @@ export function EventForm({ event }: { event?: Event }) {
       <div className="bg-white rounded-lg p-6 shadow-sm border border-gray-100 space-y-4">
         <h2 className="font-bold text-[--color-floresta-escuro] text-sm uppercase tracking-wide border-b pb-2">Informações Básicas</h2>
 
+        {/* Tipo de evento */}
+        <div>
+          <label className="block text-xs font-bold text-gray-700 uppercase tracking-wide mb-2">Tipo de Evento *</label>
+          <div className="flex gap-4">
+            {[
+              { value: 'cerimonia', label: '🔥 Cerimônia' },
+              { value: 'vivencia', label: '🌿 Vivência' },
+            ].map((opt) => (
+              <label key={opt.value} className="flex items-center gap-2 cursor-pointer">
+                <input
+                  type="radio"
+                  name="event_type"
+                  value={opt.value}
+                  defaultChecked={(event?.event_type ?? 'cerimonia') === opt.value}
+                  className="accent-[--color-floresta]"
+                />
+                <span className="text-sm font-medium">{opt.label}</span>
+              </label>
+            ))}
+          </div>
+        </div>
+
         <FormField label="Título *" name="title" defaultValue={event?.title} required />
         <FormField label="Data e Hora *" name="date" type="datetime-local" defaultValue={event?.date?.slice(0, 16)} required />
         <FormField label="Local" name="location_name" defaultValue={event?.location_name ?? 'Casa Árvore da Vida'} />
