@@ -15,34 +15,34 @@ export function Header() {
   const [menuOpen, setMenuOpen] = useState(false)
 
   return (
-    <header className="bg-[--color-floresta] text-[--color-bege] sticky top-0 z-50 shadow-lg">
+    <header className="bg-[#0D0D0D] text-[#F5EDD6] sticky top-0 z-50 border-b border-[#1e1e1e]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16 md:h-20">
           {/* Logo */}
           <Link href="/" className="flex items-center gap-3 group">
             <LogoIcon />
             <div className="leading-tight">
-              <p className="font-[--font-titulo] text-lg md:text-xl font-bold tracking-wider text-[--color-bege] group-hover:text-[--color-dourado] transition-colors">
+              <p className="font-[--font-titulo] text-base md:text-lg font-bold tracking-widest text-white group-hover:text-[--color-dourado] transition-colors">
                 CASA XAMÂNICA
               </p>
-              <p className="text-[10px] tracking-[0.3em] text-[--color-dourado] uppercase">São Paulo</p>
+              <p className="text-[10px] tracking-[0.4em] text-[--color-dourado] uppercase">São Paulo</p>
             </div>
           </Link>
 
           {/* Desktop nav */}
-          <nav className="hidden md:flex items-center gap-6 lg:gap-8">
+          <nav className="hidden md:flex items-center gap-7 lg:gap-9">
             {navLinks.map((link) => (
               <Link
                 key={link.href}
                 href={link.href}
-                className="text-sm font-medium tracking-wide text-[--color-bege] hover:text-[--color-dourado] transition-colors uppercase"
+                className="text-xs font-medium tracking-[0.15em] text-[#aaa] hover:text-[--color-dourado] transition-colors uppercase"
               >
                 {link.label}
               </Link>
             ))}
             <Link
               href="/eventos"
-              className="bg-[--color-dourado] text-[--color-floresta-escuro] px-4 py-2 rounded text-sm font-bold tracking-wide hover:bg-[--color-dourado-claro] transition-colors uppercase"
+              className="bg-[--color-dourado] text-[#0D0D0D] px-5 py-2 text-xs font-bold tracking-[0.15em] uppercase hover:bg-[--color-dourado-claro] transition-colors"
             >
               Inscreva-se
             </Link>
@@ -51,7 +51,7 @@ export function Header() {
           {/* Mobile hamburger */}
           <button
             onClick={() => setMenuOpen(!menuOpen)}
-            className="md:hidden p-2 text-[--color-bege] hover:text-[--color-dourado] transition-colors"
+            className="md:hidden p-2 text-[#aaa] hover:text-[--color-dourado] transition-colors"
             aria-label="Menu"
           >
             {menuOpen ? <XIcon /> : <MenuIcon />}
@@ -61,14 +61,14 @@ export function Header() {
 
       {/* Mobile menu */}
       {menuOpen && (
-        <div className="md:hidden bg-[--color-floresta-escuro] border-t border-[--color-floresta-claro]">
-          <nav className="px-4 py-4 flex flex-col gap-4">
+        <div className="md:hidden bg-[#0A0A0A] border-t border-[#222]">
+          <nav className="px-4 py-4 flex flex-col gap-1">
             {navLinks.map((link) => (
               <Link
                 key={link.href}
                 href={link.href}
                 onClick={() => setMenuOpen(false)}
-                className="text-[--color-bege] hover:text-[--color-dourado] transition-colors font-medium tracking-wide uppercase text-sm py-2 border-b border-[--color-floresta-claro]"
+                className="text-[#aaa] hover:text-[--color-dourado] transition-colors font-medium tracking-[0.15em] uppercase text-xs py-3 border-b border-[#1a1a1a]"
               >
                 {link.label}
               </Link>
@@ -76,7 +76,7 @@ export function Header() {
             <Link
               href="/eventos"
               onClick={() => setMenuOpen(false)}
-              className="bg-[--color-dourado] text-[--color-floresta-escuro] px-4 py-3 rounded text-sm font-bold tracking-wide text-center uppercase mt-2"
+              className="bg-[--color-dourado] text-[#0D0D0D] px-4 py-3 text-xs font-bold tracking-[0.15em] text-center uppercase mt-3"
             >
               Inscreva-se
             </Link>

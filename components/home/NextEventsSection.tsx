@@ -13,32 +13,35 @@ function getCurrentPrice(event: Event): number {
 
 export function NextEventsSection({ events }: { events: Event[] }) {
   return (
-    <section className="py-20 px-4 bg-[--color-creme]">
-      <div className="max-w-7xl mx-auto">
-        <div className="text-center mb-12">
-          <p className="text-[--color-dourado] text-xs tracking-[0.4em] uppercase mb-2">Agenda</p>
-          <h2 className="font-[--font-titulo] text-3xl md:text-4xl font-bold text-[--color-floresta-escuro] mb-4">
-            Próximas Cerimônias
+    <section className="py-20 px-4 bg-[#0D0D0D]">
+      <div className="max-w-5xl mx-auto">
+        <div className="text-center mb-14">
+          <p className="text-[--color-dourado] text-xs tracking-[0.5em] uppercase mb-3">Agenda</p>
+          <h2 className="font-[--font-titulo] text-3xl md:text-4xl font-bold text-white mb-4 tracking-wider">
+            PRÓXIMOS EVENTOS
           </h2>
-          <div className="zigzag-border w-32 mx-auto" />
+          <p className="text-[#666] text-sm max-w-xl mx-auto">
+            Cerimônias realizadas em São Paulo e outros estados, sempre num ambiente seguro e espiritualmente preparado.
+          </p>
         </div>
 
         {events.length === 0 ? (
-          <p className="text-center text-[--color-terra] text-lg py-12">
-            Novas datas em breve. Siga nosso Instagram para ser avisado.
-          </p>
+          <div className="text-center py-16 border border-[#1e1e1e]">
+            <p className="text-[#555] text-base mb-4">Novas datas em breve.</p>
+            <p className="text-[#444] text-sm">Siga nosso Instagram para ser avisado primeiro.</p>
+          </div>
         ) : (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-12">
-            {events.map((event) => (
-              <EventCard key={event.id} event={event} />
+          <div className="flex flex-col gap-0">
+            {events.map((event, index) => (
+              <EventCard key={event.id} event={event} reverse={index % 2 !== 0} />
             ))}
           </div>
         )}
 
-        <div className="text-center mt-10">
+        <div className="text-center mt-12">
           <Link
             href="/eventos"
-            className="inline-block border-2 border-[--color-floresta] text-[--color-floresta] px-8 py-3 font-[--font-titulo] font-bold text-sm tracking-wider uppercase rounded hover:bg-[--color-floresta] hover:text-[--color-bege] transition-all"
+            className="inline-block border border-[--color-dourado] text-[--color-dourado] px-10 py-3 font-[--font-titulo] font-bold text-xs tracking-[0.2em] uppercase hover:bg-[--color-dourado] hover:text-[#0D0D0D] transition-all"
           >
             Ver Todas as Cerimônias
           </Link>
@@ -48,72 +51,72 @@ export function NextEventsSection({ events }: { events: Event[] }) {
   )
 }
 
-function EventCard({ event }: { event: Event }) {
+function EventCard({ event, reverse }: { event: Event; reverse: boolean }) {
   const price = getCurrentPrice(event)
   const date = new Date(event.date)
   const spotsLeft = event.spots_available
   const sold = spotsLeft === 0
 
   return (
-    <Link href={`/eventos/${event.slug}`} className="group block">
-      <div className="bg-white rounded-lg overflow-hidden shadow-[--shadow-card] hover:shadow-[--shadow-hover] transition-all duration-300 border border-[--color-bege-escuro] hover:-translate-y-1">
+    <Link href={`/eventos/${event.slug}`} className="group block border-b border-[#1a1a1a] last:border-b-0">
+      <div className={`flex flex-col md:flex-row ${reverse ? 'md:flex-row-reverse' : ''} min-h-[280px] hover:bg-[#111] transition-colors duration-300`}>
         {/* Imagem */}
-        <div className="relative h-48 bg-[--color-floresta]">
+        <div className="relative md:w-[45%] min-h-[220px] md:min-h-0 bg-[--color-floresta-escuro] overflow-hidden">
           {event.cover_image ? (
-            <img src={event.cover_image} alt={event.title} className="w-full h-full object-cover" />
+            <img
+              src={event.cover_image}
+              alt={event.title}
+              className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+            />
           ) : (
-            <div className="w-full h-full flex items-center justify-center opacity-30">
-              <svg width="60" height="66" viewBox="0 0 60 66" fill="none">
-                <line x1="30" y1="3" x2="4" y2="57" stroke="#F5EDD6" strokeWidth="2"/>
-                <line x1="30" y1="3" x2="56" y2="57" stroke="#F5EDD6" strokeWidth="2"/>
-                <ellipse cx="30" cy="57" rx="26" ry="4" stroke="#F5EDD6" strokeWidth="1" fill="none"/>
+            <div className="w-full h-full flex items-center justify-center bg-[#111]">
+              <svg width="60" height="66" viewBox="0 0 60 66" fill="none" className="opacity-20">
+                <line x1="30" y1="3" x2="4" y2="57" stroke="#C9A84C" strokeWidth="2" />
+                <line x1="30" y1="3" x2="56" y2="57" stroke="#C9A84C" strokeWidth="2" />
+                <ellipse cx="30" cy="57" rx="26" ry="4" stroke="#C9A84C" strokeWidth="1" fill="none" />
               </svg>
             </div>
           )}
+          {/* Overlay escuro nas bordas */}
+          <div className="absolute inset-0 bg-gradient-to-r from-transparent to-[#0D0D0D] opacity-30" />
           {/* Badge vagas */}
-          <div className={`absolute top-3 right-3 px-2 py-1 rounded text-xs font-bold ${sold ? 'bg-red-600 text-white' : spotsLeft <= 5 ? 'bg-[--color-dourado] text-[--color-floresta-escuro]' : 'bg-[--color-floresta] text-[--color-bege]'}`}>
-            {sold ? 'Esgotado' : `${spotsLeft} vagas`}
+          <div className={`absolute top-4 left-4 px-3 py-1 text-xs font-bold tracking-wide ${sold ? 'bg-red-700 text-white' : spotsLeft <= 5 ? 'bg-[--color-dourado] text-[#0D0D0D]' : 'bg-[#1a1a1a] text-[--color-bege] border border-[#333]'}`}>
+            {sold ? 'ESGOTADO' : `${spotsLeft} VAGAS`}
           </div>
         </div>
 
-        {/* Padrão zigue-zague separador */}
-        <div className="h-3 bg-[--color-floresta]" style={{
-          clipPath: 'polygon(0 0, 4% 100%, 8% 0, 12% 100%, 16% 0, 20% 100%, 24% 0, 28% 100%, 32% 0, 36% 100%, 40% 0, 44% 100%, 48% 0, 52% 100%, 56% 0, 60% 100%, 64% 0, 68% 100%, 72% 0, 76% 100%, 80% 0, 84% 100%, 88% 0, 92% 100%, 96% 0, 100% 100%, 100% 0)'
-        }} />
-
         {/* Conteúdo */}
-        <div className="p-5">
-          <div className="flex items-center gap-2 text-xs text-[--color-dourado] font-medium mb-2 uppercase tracking-wide">
+        <div className="md:w-[55%] flex flex-col justify-center px-8 py-10">
+          <div className="flex items-center gap-2 text-xs text-[--color-dourado] font-medium mb-3 uppercase tracking-[0.15em]">
             <CalendarIcon />
             {format(date, "dd 'de' MMMM 'de' yyyy", { locale: ptBR })}
           </div>
 
-          <h3 className="font-[--font-titulo] text-lg font-bold text-[--color-floresta-escuro] mb-2 group-hover:text-[--color-floresta] transition-colors">
+          <h3 className="font-[--font-titulo] text-2xl font-bold text-white mb-3 group-hover:text-[--color-dourado] transition-colors leading-tight">
             {event.title}
           </h3>
 
-          <div className="flex items-center gap-1 text-xs text-[--color-terra] mb-3">
+          <div className="flex items-center gap-1 text-xs text-[#666] mb-4">
             <PinIcon />
             {event.location_name}
           </div>
 
-          {/* Medicinas */}
           {event.medicines.length > 0 && (
-            <div className="flex flex-wrap gap-1 mb-4">
+            <div className="flex flex-wrap gap-2 mb-6">
               {event.medicines.slice(0, 4).map((m) => (
-                <span key={m} className="text-xs bg-[--color-bege] text-[--color-floresta] px-2 py-0.5 rounded-full border border-[--color-bege-escuro]">
+                <span key={m} className="text-xs text-[#888] border border-[#2a2a2a] px-3 py-1 tracking-wide">
                   {m}
                 </span>
               ))}
             </div>
           )}
 
-          <div className="flex items-center justify-between pt-3 border-t border-[--color-bege-escuro]">
-            <span className="text-[--color-floresta-escuro] font-bold text-lg">
+          <div className="flex items-center justify-between">
+            <span className="font-[--font-titulo] text-2xl font-bold text-[--color-dourado]">
               {price > 0 ? `R$ ${(price / 100).toFixed(0)}` : 'Gratuito'}
             </span>
-            <span className="text-xs font-bold text-[--color-dourado] uppercase tracking-wide group-hover:underline">
-              Ver detalhes →
+            <span className="text-xs font-bold text-white border border-[#333] px-5 py-2 tracking-[0.15em] uppercase group-hover:border-[--color-dourado] group-hover:text-[--color-dourado] transition-colors">
+              SAIBA MAIS →
             </span>
           </div>
         </div>

@@ -1,86 +1,100 @@
 import Link from 'next/link'
 
 export function HeroSection() {
-  return (
-    <section className="relative min-h-[90vh] flex items-center justify-center overflow-hidden bg-[--color-floresta-escuro]">
-      {/* Fundo com gradiente e textura */}
-      <div className="absolute inset-0 bg-gradient-to-b from-[--color-floresta-escuro] via-[--color-floresta] to-[--color-floresta-escuro] opacity-90" />
+  const whatsapp = process.env.NEXT_PUBLIC_WHATSAPP ?? '5511984837287'
 
-      {/* Padrão geométrico tribal de fundo */}
+  return (
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-[#080808]">
+      {/* Padrão geométrico kene de fundo */}
       <div
-        className="absolute inset-0 opacity-5"
+        className="absolute inset-0 opacity-[0.04]"
         style={{
-          backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40'%3E%3Cpath d='M0 20 L20 0 L40 20 L20 40 Z' fill='none' stroke='%23F5EDD6' stroke-width='0.5'/%3E%3C/svg%3E")`,
-          backgroundSize: '40px 40px',
+          backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='48' height='48'%3E%3Cpath d='M0 24 L24 0 L48 24 L24 48 Z' fill='none' stroke='%23F5EDD6' stroke-width='0.8'/%3E%3Cpath d='M12 24 L24 12 L36 24 L24 36 Z' fill='%23F5EDD6' opacity='0.3'/%3E%3C/svg%3E")`,
+          backgroundSize: '48px 48px',
         }}
       />
 
-      <div className="relative z-10 text-center px-4 max-w-4xl mx-auto">
-        {/* Ícone tipé decorativo */}
-        <div className="flex justify-center mb-6">
-          <svg width="60" height="66" viewBox="0 0 60 66" fill="none" className="opacity-80">
-            <line x1="30" y1="3" x2="4" y2="57" stroke="#C9A84C" strokeWidth="2" strokeLinecap="round"/>
-            <line x1="30" y1="3" x2="56" y2="57" stroke="#C9A84C" strokeWidth="2" strokeLinecap="round"/>
-            <line x1="30" y1="3" x2="30" y2="6" stroke="#F5EDD6" strokeWidth="3" strokeLinecap="round"/>
-            <path d="M13 44 Q30 38 47 44" stroke="#C9A84C" strokeWidth="1.5" fill="none"/>
-            <path d="M8 54 Q30 46 52 54" stroke="#C9A84C" strokeWidth="1.5" fill="none"/>
-            <ellipse cx="30" cy="57" rx="26" ry="4" stroke="#C9A84C" strokeWidth="1" fill="none"/>
+      {/* Brilho central quente — como brasa de cerimônia */}
+      <div className="absolute inset-0">
+        <div
+          className="absolute inset-0 opacity-20"
+          style={{
+            background: 'radial-gradient(ellipse 60% 50% at 50% 55%, #2D4A2D 0%, transparent 70%)',
+          }}
+        />
+        <div
+          className="absolute inset-0 opacity-10"
+          style={{
+            background: 'radial-gradient(ellipse 30% 30% at 50% 60%, #C9A84C 0%, transparent 60%)',
+          }}
+        />
+      </div>
+
+      <div className="relative z-10 text-center px-4 max-w-4xl mx-auto py-24">
+        {/* Tipé */}
+        <div className="flex justify-center mb-8">
+          <svg width="56" height="62" viewBox="0 0 60 66" fill="none">
+            <line x1="30" y1="3" x2="4" y2="57" stroke="#C9A84C" strokeWidth="2" strokeLinecap="round" />
+            <line x1="30" y1="3" x2="56" y2="57" stroke="#C9A84C" strokeWidth="2" strokeLinecap="round" />
+            <line x1="30" y1="3" x2="30" y2="7" stroke="#F5EDD6" strokeWidth="3" strokeLinecap="round" />
+            <path d="M13 44 Q30 38 47 44" stroke="#C9A84C" strokeWidth="1.5" fill="none" />
+            <path d="M8 53 Q30 45 52 53" stroke="#C9A84C" strokeWidth="1.5" fill="none" />
+            <ellipse cx="30" cy="57" rx="26" ry="4" stroke="#C9A84C" strokeWidth="1" fill="none" />
           </svg>
         </div>
 
-        <h1 className="font-[--font-titulo] text-4xl md:text-6xl lg:text-7xl font-bold text-[--color-bege] mb-4 leading-tight tracking-wide">
-          CASA XAMÂNICA SP
-        </h1>
-        <p className="text-[--color-dourado] text-sm md:text-base tracking-[0.4em] uppercase mb-6">
+        {/* Subtítulo acima do título */}
+        <p className="text-[--color-dourado] text-xs tracking-[0.5em] uppercase mb-5 font-medium">
           Medicina Tradicional Indígena
         </p>
 
-        {/* Divisor zigue-zague */}
-        <div className="flex justify-center mb-8">
-          <svg viewBox="0 0 240 12" width="240" height="12" xmlns="http://www.w3.org/2000/svg">
-            {Array.from({ length: 12 }).map((_, i) => (
-              <polyline
+        <h1 className="font-[--font-titulo] text-5xl md:text-7xl lg:text-8xl font-bold text-white mb-5 leading-none tracking-widest">
+          CASA XAMÂNICA SP
+        </h1>
+
+        {/* Tagline — floresta encontra a cidade */}
+        <p className="text-[#aaa] text-base md:text-lg tracking-[0.1em] mb-10 max-w-xl mx-auto leading-relaxed">
+          A floresta chama. São Paulo escuta.
+          <br />
+          <span className="text-[#777] text-sm">
+            Ayahuasca · Rapé · Sananga — onde o sagrado encontra a cidade.
+          </span>
+        </p>
+
+        {/* Divisor kene */}
+        <div className="flex justify-center mb-10">
+          <svg viewBox="0 0 280 10" width="280" height="10" xmlns="http://www.w3.org/2000/svg">
+            {Array.from({ length: 14 }).map((_, i) => (
+              <polygon
                 key={i}
-                points={`${i * 20},12 ${i * 20 + 10},0 ${i * 20 + 20},12`}
-                fill="none"
-                stroke="#C9A84C"
-                strokeWidth="1.5"
+                points={`${i * 20},10 ${i * 20 + 10},0 ${i * 20 + 20},10`}
+                fill="#C9A84C"
+                opacity={i % 2 === 0 ? '1' : '0.4'}
               />
             ))}
           </svg>
         </div>
 
-        <p className="text-[--color-bege] text-lg md:text-xl opacity-90 max-w-2xl mx-auto mb-10 leading-relaxed">
-          Cerimônias de Ayahuasca, Rapé e Sananga — uma jornada de cura, autoconhecimento e conexão com a floresta.
-        </p>
-
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
           <Link
             href="/eventos"
-            className="bg-[--color-dourado] text-[--color-floresta-escuro] px-8 py-4 font-[--font-titulo] font-bold tracking-wider uppercase text-sm rounded hover:bg-[--color-dourado-claro] transition-all hover:scale-105 shadow-lg"
+            className="bg-[--color-dourado] text-[#0D0D0D] px-10 py-4 font-[--font-titulo] font-bold tracking-[0.2em] uppercase text-sm hover:bg-[--color-dourado-claro] transition-all hover:scale-105 shadow-2xl"
           >
             Próximas Cerimônias
           </Link>
           <a
-            href={`https://wa.me/${process.env.NEXT_PUBLIC_WHATSAPP ?? '5511984837287'}`}
+            href={`https://wa.me/${whatsapp}`}
             target="_blank"
             rel="noopener noreferrer"
-            className="border-2 border-[--color-bege] text-[--color-bege] px-8 py-4 font-[--font-titulo] font-bold tracking-wider uppercase text-sm rounded hover:bg-[--color-bege] hover:text-[--color-floresta-escuro] transition-all"
+            className="border border-[#444] text-[#ccc] px-10 py-4 font-[--font-titulo] font-bold tracking-[0.2em] uppercase text-sm hover:border-[--color-dourado] hover:text-[--color-dourado] transition-all"
           >
             Falar pelo WhatsApp
           </a>
         </div>
       </div>
 
-      {/* Zigue-zague na base */}
-      <div className="absolute bottom-0 left-0 right-0 h-12 flex">
-        <svg viewBox="0 0 1440 48" preserveAspectRatio="none" className="w-full" xmlns="http://www.w3.org/2000/svg">
-          <path
-            d="M0,0 L40,48 L80,0 L120,48 L160,0 L200,48 L240,0 L280,48 L320,0 L360,48 L400,0 L440,48 L480,0 L520,48 L560,0 L600,48 L640,0 L680,48 L720,0 L760,48 L800,0 L840,48 L880,0 L920,48 L960,0 L1000,48 L1040,0 L1080,48 L1120,0 L1160,48 L1200,0 L1240,48 L1280,0 L1320,48 L1360,0 L1400,48 L1440,0 L1440,48 L0,48 Z"
-            fill="#FBF7EE"
-          />
-        </svg>
-      </div>
+      {/* Fade bottom para seção seguinte */}
+      <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-[#080808] to-transparent" />
     </section>
   )
 }

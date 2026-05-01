@@ -6,6 +6,7 @@ import { NextEventsSection } from '@/components/home/NextEventsSection'
 import { SobreSection } from '@/components/home/SobreSection'
 import { InstagramFeed } from '@/components/home/InstagramFeed'
 import { YouTubeSection } from '@/components/home/YouTubeSection'
+import { TribalDivider } from '@/components/ui/TribalDivider'
 import { Event } from '@/lib/types'
 
 export default async function HomePage() {
@@ -27,8 +28,11 @@ export default async function HomePage() {
   return (
     <>
       <HeroSection />
+      <TribalDivider />
       <NextEventsSection events={(events ?? []) as Event[]} />
+      <TribalDivider />
       <SobreSection />
+      <TribalDivider flip />
       <YouTubeSection videos={youtubeVideos} />
       <InstagramFeed posts={instagramPosts} />
     </>
