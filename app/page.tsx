@@ -1,0 +1,36 @@
+import { createClient } from '@/lib/supabase/server'
+import { fetchInstagramPosts } from '@/lib/instagram/fetch-posts'
+import { fetchYouTubeVideos } from '@/lib/youtube/fetch-videos'
+import { HeroSection } from '@/components/home/HeroSection'
+import { NextEventsSection } from '@/components/home/NextEventsSection'
+import { SobreSection } from '@/components/home/SobreSection'
+import { InstagramFeed } from '@/components/home/InstagramFeed'
+import { YouTubeSection } from '@/components/home/YouTubeSection'
+import { Event } from '@/lib/types'
+
+export default async function HomePage() {
+  const supabase = await createClient()
+
+  const { data: events } = await supabase
+    .from('events')
+    .select('*')
+    .eq('is_active', true)
+    .gte('date', new Date().toISOString())
+    .order('date', { ascending: true })
+    .limit(3)
+
+  const [instagramPosts, youtubeVideos] = await Promise.all([
+    fetchInstagramPosts(9),
+    fetchYouTubeVideos(3),
+  ])
+
+  return (
+    <>
+      <HeroSection />
+      <NextEventsSection events={(events ?? []) as Event[]} />
+      <SobreSection />
+      <YouTubeSection videos={youtubeVideos} />
+      <InstagramFeed posts={instagramPosts} />
+    </>
+  )
+}
