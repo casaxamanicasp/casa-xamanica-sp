@@ -31,14 +31,15 @@ export default function AdminLoginPage() {
   async function handleMagicLink() {
     setLoading(true)
     setError(null)
-    const supabase = createClient()
-    const { error } = await supabase.auth.signInWithOtp({
-      email,
-      options: { emailRedirectTo: `${window.location.origin}/auth/callback?next=/admin` },
+    const res = await fetch('/api/send-magic-link', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email }),
     })
+    const data = await res.json()
     setLoading(false)
-    if (error) {
-      setError('Erro ao enviar link: ' + error.message)
+    if (data.error) {
+      setError('Erro ao enviar link: ' + data.error)
     } else {
       setMagicSent(true)
     }
