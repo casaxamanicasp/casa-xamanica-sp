@@ -1,9 +1,9 @@
 export function TribalDivider({ flip = false }: { flip?: boolean }) {
   // Kene pattern: diamantes aninhados preto e branco inspirados nas tecelagens Huni Kuin
-  const H = 100
-  const borderH = 18
-  const midH = 64     // altura da faixa central
-  const tileW = 64    // largura do tile = diamante quadrado
+  const H = 64
+  const borderH = 12
+  const midH = 40     // altura da faixa central
+  const tileW = 40    // largura do tile = diamante quadrado
 
   // Centro do diamante dentro do tile
   const cx = tileW / 2  // 32
