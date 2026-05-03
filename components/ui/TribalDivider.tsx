@@ -1,18 +1,21 @@
 export function TribalDivider({ flip = false }: { flip?: boolean }) {
-  // Kene pattern: diamantes aninhados preto e branco inspirados nas tecelagens Huni Kuin
-  const H = 64
-  const borderH = 12
-  const midH = 40     // altura da faixa central
-  const tileW = 40    // largura do tile = diamante quadrado
+  const H = 64          // viewBox height
+  const displayH = Math.round(H * 0.7) // altura renderizada (−30%)
 
-  // Centro do diamante dentro do tile
-  const cx = tileW / 2  // 32
-  const cy = midH / 2   // 32
-  const hw = tileW / 2  // meia largura = 32
-  const hh = midH / 2   // meia altura = 32
+  const borderH = 11    // altura das bordas de triângulos
+  const midH = H - borderH * 2  // 42px — faixa central dos diamantes
+  const tileW = 28      // tile mais estreito → mais diamantes (densidade maior)
 
-  // Quantidade de triângulos nas bordas (1440 / 16 + 1)
-  const numBorderTri = 92
+  const cx = tileW / 2  // centro X do tile
+  const cy = midH / 2   // centro Y do tile
+  const hw = tileW / 2  // meia-largura do diamante
+  const hh = midH / 2   // meia-altura do diamante
+
+  // Triângulos de borda: 1 a cada 14px
+  const numBorderTri = Math.ceil(1440 / 14) + 1
+
+  const BG = '#0F1F0F'
+  const FG = '#F5EDD6'
 
   return (
     <div
@@ -24,16 +27,16 @@ export function TribalDivider({ flip = false }: { flip?: boolean }) {
         viewBox={`0 0 1440 ${H}`}
         preserveAspectRatio="none"
         className="w-full block"
-        style={{ height: Math.round(H * 0.7) }}
+        style={{ height: displayH }}
         xmlns="http://www.w3.org/2000/svg"
       >
-        {/* Fundo totalmente preto */}
-        <rect width="1440" height={H} fill="#0F1F0F" />
+        {/* Fundo */}
+        <rect width="1440" height={H} fill={BG} />
 
-        {/* === Faixa central: diamantes kene aninhados === */}
+        {/* Padrão kene: diamantes aninhados */}
         <defs>
           <pattern
-            id="kene-bw"
+            id="kene-hk"
             width={tileW}
             height={midH}
             patternUnits="userSpaceOnUse"
@@ -41,76 +44,74 @@ export function TribalDivider({ flip = false }: { flip?: boolean }) {
             y={borderH}
           >
             {/* Fundo do tile */}
-            <rect width={tileW} height={midH} fill="#0F1F0F" />
+            <rect width={tileW} height={midH} fill={BG} />
 
-            {/* Camada 1 — diamante externo: branco */}
+            {/* Anel 1 — diamante externo (bege) */}
             <polygon
               points={`${cx},${cy - hh} ${cx + hw},${cy} ${cx},${cy + hh} ${cx - hw},${cy}`}
-              fill="#F5EDD6"
+              fill={FG}
             />
-            {/* Camada 2 — anel preto (75%) */}
+            {/* Anel 2 — corte escuro (80%) */}
             <polygon
-              points={`${cx},${cy - hh * 0.75} ${cx + hw * 0.75},${cy} ${cx},${cy + hh * 0.75} ${cx - hw * 0.75},${cy}`}
-              fill="#0F1F0F"
+              points={`${cx},${cy - hh * 0.8} ${cx + hw * 0.8},${cy} ${cx},${cy + hh * 0.8} ${cx - hw * 0.8},${cy}`}
+              fill={BG}
             />
-            {/* Camada 3 — anel branco (52%) */}
+            {/* Anel 3 — bege (58%) */}
             <polygon
-              points={`${cx},${cy - hh * 0.52} ${cx + hw * 0.52},${cy} ${cx},${cy + hh * 0.52} ${cx - hw * 0.52},${cy}`}
-              fill="#F5EDD6"
+              points={`${cx},${cy - hh * 0.58} ${cx + hw * 0.58},${cy} ${cx},${cy + hh * 0.58} ${cx - hw * 0.58},${cy}`}
+              fill={FG}
             />
-            {/* Camada 4 — anel preto (32%) */}
+            {/* Anel 4 — corte escuro (36%) */}
             <polygon
-              points={`${cx},${cy - hh * 0.32} ${cx + hw * 0.32},${cy} ${cx},${cy + hh * 0.32} ${cx - hw * 0.32},${cy}`}
-              fill="#0F1F0F"
+              points={`${cx},${cy - hh * 0.36} ${cx + hw * 0.36},${cy} ${cx},${cy + hh * 0.36} ${cx - hw * 0.36},${cy}`}
+              fill={BG}
             />
-            {/* Camada 5 — miolo branco (14%) */}
+            {/* Anel 5 — miolo bege (16%) */}
             <polygon
-              points={`${cx},${cy - hh * 0.14} ${cx + hw * 0.14},${cy} ${cx},${cy + hh * 0.14} ${cx - hw * 0.14},${cy}`}
-              fill="#F5EDD6"
+              points={`${cx},${cy - hh * 0.16} ${cx + hw * 0.16},${cy} ${cx},${cy + hh * 0.16} ${cx - hw * 0.16},${cy}`}
+              fill={FG}
             />
           </pattern>
         </defs>
 
-        {/* Faixa central preenchida com o padrão kene */}
-        <rect x="0" y={borderH} width="1440" height={midH} fill="url(#kene-bw)" />
+        {/* Faixa central */}
+        <rect x="0" y={borderH} width="1440" height={midH} fill="url(#kene-hk)" />
 
-        {/* Linha de detalhe acima e abaixo da faixa central */}
-        <rect y={borderH - 2} width="1440" height="2" fill="#F5EDD6" opacity="0.3" />
-        <rect y={borderH + midH} width="1440" height="2" fill="#F5EDD6" opacity="0.3" />
+        {/* Linha de separação superior e inferior */}
+        <rect y={borderH - 1} width="1440" height="1" fill={FG} opacity="0.4" />
+        <rect y={borderH + midH} width="1440" height="1" fill={FG} opacity="0.4" />
 
-        {/* === Borda superior: triângulos brancos apontando para baixo === */}
+        {/* Borda superior — triângulos apontando para baixo */}
         {Array.from({ length: numBorderTri }).map((_, i) => (
           <polygon
             key={`t-${i}`}
-            points={`${i * 16},0 ${i * 16 + 8},${borderH} ${i * 16 + 16},0`}
-            fill="#F5EDD6"
+            points={`${i * 14},0 ${i * 14 + 7},${borderH} ${i * 14 + 14},0`}
+            fill={FG}
           />
         ))}
-
-        {/* Detalhe: triângulos menores na borda superior (metade do tamanho) */}
+        {/* Detalhe interno superior */}
         {Array.from({ length: numBorderTri }).map((_, i) => (
           <polygon
-            key={`ts-${i}`}
-            points={`${i * 16 + 8},0 ${i * 16 + 12},${borderH * 0.5} ${i * 16 + 16},0`}
-            fill="#0F1F0F"
+            key={`ti-${i}`}
+            points={`${i * 14 + 7},0 ${i * 14 + 10.5},${borderH * 0.5} ${i * 14 + 14},0`}
+            fill={BG}
           />
         ))}
 
-        {/* === Borda inferior: triângulos brancos apontando para cima === */}
+        {/* Borda inferior — triângulos apontando para cima */}
         {Array.from({ length: numBorderTri }).map((_, i) => (
           <polygon
             key={`b-${i}`}
-            points={`${i * 16},${H} ${i * 16 + 8},${H - borderH} ${i * 16 + 16},${H}`}
-            fill="#F5EDD6"
+            points={`${i * 14},${H} ${i * 14 + 7},${H - borderH} ${i * 14 + 14},${H}`}
+            fill={FG}
           />
         ))}
-
-        {/* Detalhe: triângulos menores na borda inferior */}
+        {/* Detalhe interno inferior */}
         {Array.from({ length: numBorderTri }).map((_, i) => (
           <polygon
-            key={`bs-${i}`}
-            points={`${i * 16 + 8},${H} ${i * 16 + 12},${H - borderH * 0.5} ${i * 16 + 16},${H}`}
-            fill="#0F1F0F"
+            key={`bi-${i}`}
+            points={`${i * 14 + 7},${H} ${i * 14 + 10.5},${H - borderH * 0.5} ${i * 14 + 14},${H}`}
+            fill={BG}
           />
         ))}
       </svg>
