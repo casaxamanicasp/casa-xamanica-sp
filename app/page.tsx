@@ -7,6 +7,7 @@ import { SobreSection } from '@/components/home/SobreSection'
 import { GaleriaSection } from '@/components/home/GaleriaSection'
 import { InstagramFeed } from '@/components/home/InstagramFeed'
 import { YouTubeSection } from '@/components/home/YouTubeSection'
+import { PodcastSection } from '@/components/home/PodcastSection'
 import { TribalDivider } from '@/components/ui/TribalDivider'
 import { Event } from '@/lib/types'
 
@@ -33,6 +34,8 @@ export default async function HomePage() {
       <NextEventsSection events={(events ?? []) as Event[]} />
       <TribalDivider />
       <SobreSection />
+      <TribalDivider flip />
+      <PodcastSection />
       <TribalDivider flip />
       <YouTubeSection videos={youtubeVideos} />
       <TribalDivider />

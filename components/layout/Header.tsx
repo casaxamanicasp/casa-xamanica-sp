@@ -7,6 +7,7 @@ const navLinks = [
   { href: '/eventos', label: 'Cerimônias' },
   { href: '/vivencias', label: 'Vivências' },
   { href: '/galeria', label: 'Galeria' },
+  { href: '/midia', label: 'Mídia' },
   { href: '/blog', label: 'Blog' },
   { href: '/loja', label: 'Loja' },
   { href: '/apoiadores', label: 'Apoiadores' },
