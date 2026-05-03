@@ -36,10 +36,11 @@ export default async function HomePage() {
       <SobreSection />
       <TribalDivider flip />
       <PodcastSection />
-      <TribalDivider flip />
+      {youtubeVideos.length > 0 && <TribalDivider flip />}
       <YouTubeSection videos={youtubeVideos} />
       <TribalDivider />
       <InstagramFeed posts={instagramPosts} />
+      <TribalDivider flip />
       <GaleriaSection />
     </>
   )
