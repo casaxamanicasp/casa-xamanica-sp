@@ -1,6 +1,14 @@
-import { Resend } from 'resend'
+import nodemailer from 'nodemailer'
 
-const resend = new Resend(process.env.RESEND_API_KEY)
+function createTransporter() {
+  return nodemailer.createTransport({
+    service: 'gmail',
+    auth: {
+      user: process.env.GMAIL_USER,
+      pass: process.env.GMAIL_APP_PASSWORD,
+    },
+  })
+}
 
 export async function sendRegistrationConfirmation({
   to,
@@ -17,8 +25,9 @@ export async function sendRegistrationConfirmation({
   eventLocation: string
   paymentMethod: string
 }) {
-  await resend.emails.send({
-    from: process.env.RESEND_FROM_EMAIL!,
+  const transporter = createTransporter()
+  await transporter.sendMail({
+    from: `"Casa Xamânica SP" <${process.env.GMAIL_USER}>`,
     to,
     subject: `✅ Inscrição confirmada — ${eventTitle}`,
     html: `
@@ -103,10 +112,11 @@ export async function sendAnamnesisToAdmin({
   const row = (label: string, value: string) =>
     `<tr><td style="padding:8px 12px;background:#f5f5f5;font-weight:bold;width:35%;vertical-align:top;font-size:13px;color:#555;">${label}</td><td style="padding:8px 12px;font-size:13px;color:#1a1a1a;">${value || '—'}</td></tr>`
 
-  await resend.emails.send({
-    from: process.env.RESEND_FROM_EMAIL!,
+  const transporter = createTransporter()
+  await transporter.sendMail({
+    from: `"Casa Xamânica SP" <${process.env.GMAIL_USER}>`,
     to: 'casaxamanica@gmail.com',
-    subject: `📋 Nova inscrição confirmada — ${anamnesis.full_name} | ${eventTitle}`,
+    subject: `📋 Nova inscrição — ${anamnesis.full_name} | ${eventTitle}`,
     html: `
       <div style="font-family: Arial, sans-serif; max-width: 700px; margin: 0 auto; background: #fff; border: 1px solid #e0e0e0; border-radius: 8px; overflow: hidden;">
 
@@ -175,8 +185,9 @@ export async function sendOrderConfirmation({
   quantity: number
   amount: string
 }) {
-  await resend.emails.send({
-    from: process.env.RESEND_FROM_EMAIL!,
+  const transporter = createTransporter()
+  await transporter.sendMail({
+    from: `"Casa Xamânica SP" <${process.env.GMAIL_USER}>`,
     to,
     subject: `✅ Pedido confirmado — ${productName}`,
     html: `
