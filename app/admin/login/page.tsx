@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { createClient } from '@/lib/supabase/client'
 import { useRouter } from 'next/navigation'
 
@@ -11,6 +11,21 @@ export default function AdminLoginPage() {
   const [loading, setLoading] = useState(false)
   const [magicSent, setMagicSent] = useState(false)
   const router = useRouter()
+
+  useEffect(() => {
+    const hash = window.location.hash
+    if (hash.includes('access_token')) {
+      const params = new URLSearchParams(hash.replace('#', ''))
+      const access_token = params.get('access_token')
+      const refresh_token = params.get('refresh_token') ?? ''
+      if (access_token) {
+        const supabase = createClient()
+        supabase.auth.setSession({ access_token, refresh_token }).then(({ error }) => {
+          if (!error) router.push('/admin')
+        })
+      }
+    }
+  }, [])
 
   async function handleLogin(e: React.FormEvent) {
     e.preventDefault()
