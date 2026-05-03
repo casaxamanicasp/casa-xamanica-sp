@@ -92,16 +92,16 @@ function EventRow({ event, past = false }: { event: Event; past?: boolean }) {
 
   return (
     <Link href={`/eventos/${event.slug}`} className="group block">
-      <div className="bg-white rounded-lg border border-[--color-bege-escuro] shadow-[--shadow-card] hover:shadow-[--shadow-hover] transition-all overflow-hidden flex flex-col md:flex-row">
+      <div className="bg-white rounded-lg border border-[--color-bege-escuro] shadow-[--shadow-card] hover:shadow-[--shadow-hover] transition-all overflow-hidden flex flex-col md:flex-row md:h-44">
         {/* Foto de capa (mobile: topo) */}
         {event.cover_image && (
-          <div className="md:hidden w-full h-48 overflow-hidden">
+          <div className="md:hidden w-full h-48 overflow-hidden shrink-0">
             <img src={event.cover_image} alt={event.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
           </div>
         )}
 
         {/* Data */}
-        <div className="bg-[--color-floresta] text-[--color-bege] p-6 flex flex-col items-center justify-center min-w-[120px] text-center">
+        <div className="bg-[--color-floresta] text-[--color-bege] p-6 flex flex-col items-center justify-center w-full md:w-[120px] shrink-0 text-center">
           <span className="font-[--font-titulo] text-3xl font-bold">{format(date, 'dd')}</span>
           <span className="text-xs uppercase tracking-wider text-[--color-dourado]">
             {format(date, 'MMM', { locale: ptBR })}
@@ -110,9 +110,9 @@ function EventRow({ event, past = false }: { event: Event; past?: boolean }) {
         </div>
 
         {/* Conteúdo */}
-        <div className="p-6 flex-1 flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
-          <div className="flex-1">
-            <h2 className="font-[--font-titulo] text-xl font-bold text-[--color-floresta-escuro] group-hover:text-[--color-floresta] transition-colors mb-1">
+        <div className="p-6 flex-1 flex flex-col md:flex-row items-start md:items-center justify-between gap-4 overflow-hidden">
+          <div className="flex-1 min-w-0">
+            <h2 className="font-[--font-titulo] text-xl font-bold text-[--color-floresta-escuro] group-hover:text-[--color-floresta] transition-colors mb-1 line-clamp-2">
               {event.title}
             </h2>
             <div className="flex flex-wrap items-center gap-3 text-sm text-[--color-terra] mb-2">
@@ -150,10 +150,10 @@ function EventRow({ event, past = false }: { event: Event; past?: boolean }) {
           </div>
         </div>
 
-        {/* Foto de capa (desktop: direita) */}
+        {/* Foto de capa (desktop: direita, largura e altura fixas) */}
         {event.cover_image && (
           <div className="hidden md:block w-44 shrink-0 overflow-hidden">
-            <img src={event.cover_image} alt={event.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+            <img src={event.cover_image} alt={event.title} className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500" />
           </div>
         )}
       </div>
