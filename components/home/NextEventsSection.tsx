@@ -60,16 +60,16 @@ function EventCard({ event, reverse }: { event: Event; reverse: boolean }) {
   return (
     <Link href={`/eventos/${event.slug}`} className="group block border-b border-[#1a1a1a] last:border-b-0">
       <div className={`flex flex-col md:flex-row ${reverse ? 'md:flex-row-reverse' : ''} min-h-[280px] hover:bg-[#111] transition-colors duration-300`}>
-        {/* Imagem */}
-        <div className="relative md:w-[45%] min-h-[220px] md:min-h-0 bg-[--color-floresta-escuro] overflow-hidden">
+        {/* Imagem — quadrada pequena, expande no hover */}
+        <div className="relative shrink-0 self-center mx-6 my-6 md:my-0 w-[200px] h-[200px] md:w-[220px] md:h-[220px] overflow-hidden group-hover:w-[340px] group-hover:h-[340px] transition-all duration-500 ease-in-out bg-[#111]">
           {event.cover_image ? (
             <img
               src={event.cover_image}
               alt={event.title}
-              className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+              className="w-full h-full object-cover object-center transition-transform duration-500 group-hover:scale-105"
             />
           ) : (
-            <div className="w-full h-full flex items-center justify-center bg-[#111]">
+            <div className="w-full h-full flex items-center justify-center">
               <svg width="60" height="66" viewBox="0 0 60 66" fill="none" className="opacity-20">
                 <line x1="30" y1="3" x2="4" y2="57" stroke="#C9A84C" strokeWidth="2" />
                 <line x1="30" y1="3" x2="56" y2="57" stroke="#C9A84C" strokeWidth="2" />
@@ -77,10 +77,8 @@ function EventCard({ event, reverse }: { event: Event; reverse: boolean }) {
               </svg>
             </div>
           )}
-          {/* Overlay escuro nas bordas */}
-          <div className="absolute inset-0 bg-gradient-to-r from-transparent to-[#0D0D0D] opacity-30" />
           {/* Badge vagas */}
-          <div className={`absolute top-4 left-4 px-3 py-1 text-xs font-bold tracking-wide ${sold ? 'bg-red-700 text-white' : spotsLeft <= 5 ? 'bg-[--color-dourado] text-[#0D0D0D]' : 'bg-[#1a1a1a] text-[--color-bege] border border-[#333]'}`}>
+          <div className={`absolute top-3 left-3 px-2 py-0.5 text-xs font-bold tracking-wide ${sold ? 'bg-red-700 text-white' : spotsLeft <= 5 ? 'bg-[--color-dourado] text-[#0D0D0D]' : 'bg-[#1a1a1a] text-[--color-bege] border border-[#333]'}`}>
             {sold ? 'ESGOTADO' : `${spotsLeft} VAGAS`}
           </div>
         </div>
