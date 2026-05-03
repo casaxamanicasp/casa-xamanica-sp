@@ -4,6 +4,7 @@ import { fetchYouTubeVideos } from '@/lib/youtube/fetch-videos'
 import { HeroSection } from '@/components/home/HeroSection'
 import { NextEventsSection } from '@/components/home/NextEventsSection'
 import { SobreSection } from '@/components/home/SobreSection'
+import { GaleriaSection } from '@/components/home/GaleriaSection'
 import { InstagramFeed } from '@/components/home/InstagramFeed'
 import { YouTubeSection } from '@/components/home/YouTubeSection'
 import { TribalDivider } from '@/components/ui/TribalDivider'
@@ -33,6 +34,8 @@ export default async function HomePage() {
       <TribalDivider />
       <SobreSection />
       <TribalDivider flip />
+      <GaleriaSection />
+      <TribalDivider />
       <YouTubeSection videos={youtubeVideos} />
       <InstagramFeed posts={instagramPosts} />
     </>
