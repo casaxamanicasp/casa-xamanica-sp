@@ -75,7 +75,9 @@ export default async function EventoPage({ params }: Props) {
             {/* Descrição */}
             {event.description && (
               <div className="bg-white rounded-lg p-6 shadow-[--shadow-card]">
-                <h2 className="font-[--font-titulo] text-xl font-bold text-[--color-floresta-escuro] mb-4">Sobre a Cerimônia</h2>
+                <h2 className="font-[--font-titulo] text-xl font-bold text-[--color-floresta-escuro] mb-4">
+                  {event.event_type === 'vivencia' ? 'Sobre a Vivência' : 'Sobre a Cerimônia'}
+                </h2>
                 <div
                   className="prose-xamanica"
                   dangerouslySetInnerHTML={{ __html: event.description }}
