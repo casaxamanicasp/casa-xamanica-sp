@@ -23,7 +23,7 @@ export default function MidiaPage() {
   return (
     <div className="min-h-screen bg-[--color-creme]">
       {/* Cabeçalho */}
-      <div className="bg-[--color-floresta-escuro] py-20 px-4 text-center">
+      <div className="bg-[--color-floresta-escuro] min-h-[288px] flex flex-col items-center justify-center px-4 text-center">
         <p className="text-[--color-dourado] text-xs tracking-[0.5em] uppercase mb-3">Aparições</p>
         <h1 className="font-[--font-titulo] text-4xl md:text-5xl font-bold text-[--color-bege] mb-4 tracking-wider">
           MÍDIA
