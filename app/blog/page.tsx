@@ -21,10 +21,10 @@ export default async function BlogPage() {
 
   return (
     <div className="min-h-screen bg-[--color-creme]">
-      <div className="bg-[--color-floresta-escuro] py-16 px-4 text-center">
-        <p className="text-[--color-dourado] text-xs tracking-[0.4em] uppercase mb-2">Conhecimento</p>
-        <h1 className="font-[--font-titulo] text-4xl md:text-5xl font-bold text-[--color-bege] mb-4">Blog</h1>
-        <p className="text-[--color-bege] opacity-80 max-w-xl mx-auto">
+      <div className="bg-[--color-floresta-escuro] py-20 px-4 text-center">
+        <p className="text-[--color-dourado] text-xs tracking-[0.5em] uppercase mb-3">Conhecimento</p>
+        <h1 className="font-[--font-titulo] text-4xl md:text-5xl font-bold text-[--color-bege] mb-4 tracking-wider">BLOG</h1>
+        <p className="text-[--color-bege] opacity-70 max-w-xl mx-auto leading-relaxed">
           Artigos sobre xamanismo, plantas de poder, cerimônias e autoconhecimento.
         </p>
       </div>

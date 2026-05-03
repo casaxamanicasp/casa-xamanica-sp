@@ -13,9 +13,9 @@ export default function ContatoPage() {
 
   return (
     <div className="min-h-screen bg-[--color-creme]">
-      <div className="bg-[--color-floresta-escuro] py-16 px-4 text-center">
-        <p className="text-[--color-dourado] text-xs tracking-[0.4em] uppercase mb-2">Fale Conosco</p>
-        <h1 className="font-[--font-titulo] text-4xl md:text-5xl font-bold text-[--color-bege] mb-4">Contato</h1>
+      <div className="bg-[--color-floresta-escuro] py-20 px-4 text-center">
+        <p className="text-[--color-dourado] text-xs tracking-[0.5em] uppercase mb-3">Fale Conosco</p>
+        <h1 className="font-[--font-titulo] text-4xl md:text-5xl font-bold text-[--color-bege] mb-4 tracking-wider">CONTATO</h1>
       </div>
 
       <TribalDivider />
