@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from 'next/server'
 import { createAdminClient } from '@/lib/supabase/admin'
 import { getMercadoPagoClient } from '@/lib/mercadopago/client'
 import { Payment } from 'mercadopago'
-import { sendRegistrationConfirmation, sendOrderConfirmation } from '@/lib/resend/send-confirmation'
+import { sendRegistrationConfirmation, sendOrderConfirmation, sendAnamnesisToAdmin } from '@/lib/resend/send-confirmation'
 import { format } from 'date-fns'
 import { ptBR } from 'date-fns/locale'
 
@@ -29,7 +29,15 @@ export async function POST(req: NextRequest) {
     // Tenta atualizar como inscrição de cerimônia
     const { data: registration } = await supabase
       .from('registrations')
-      .select('*, events(title, date, location_name, address), anamnesis(full_name, email)')
+      .select(`
+        *,
+        events(title, date, location_name, address, event_type),
+        anamnesis(
+          full_name, email, birth_date, phone, address,
+          previous_ayahuasca, health_treatment, current_medications,
+          allergies, health_conditions, other_health_issues, ceremony_expectation
+        )
+      `)
       .eq('id', registrationId)
       .single()
 
@@ -42,17 +50,32 @@ export async function POST(req: NextRequest) {
       // Decrementa vagas
       await supabase.rpc('decrement_spots', { event_id: registration.event_id })
 
-      // Envia e-mail de confirmação
       const anamnesis = registration.anamnesis as any
       const event = registration.events as any
+      const eventDate = format(new Date(event.date), "dd 'de' MMMM 'de' yyyy, HH:mm", { locale: ptBR })
+      const paymentMethod = paymentData.payment_method_id === 'pix' ? 'Pix' : 'Cartão de Crédito'
+
       if (anamnesis?.email) {
+        // E-mail de confirmação para o participante
         await sendRegistrationConfirmation({
           to: anamnesis.email,
           name: anamnesis.full_name,
           eventTitle: event.title,
-          eventDate: format(new Date(event.date), "dd 'de' MMMM 'de' yyyy, HH:mm", { locale: ptBR }),
+          eventDate,
           eventLocation: event.location_name,
-          paymentMethod: paymentData.payment_method_id === 'pix' ? 'Pix' : 'Cartão de Crédito',
+          paymentMethod,
+        })
+
+        // Ficha de anamnese completa para a Casa Xamânica
+        await sendAnamnesisToAdmin({
+          eventTitle: event.title,
+          eventDate,
+          eventLocation: event.location_name,
+          eventType: event.event_type ?? 'cerimonia',
+          pricingTier: registration.pricing_tier_name ?? '',
+          amountCents: registration.amount_cents ?? 0,
+          paymentMethod,
+          anamnesis,
         })
       }
 
