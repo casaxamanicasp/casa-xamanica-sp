@@ -8,21 +8,44 @@ export type InstagramPost = {
   thumbnail_url?: string
 }
 
-export async function fetchInstagramPosts(limit = 9): Promise<InstagramPost[]> {
-  const token = process.env.INSTAGRAM_ACCESS_TOKEN
-  const userId = process.env.INSTAGRAM_USER_ID
+type BeholdPost = {
+  id: string
+  mediaType: string
+  mediaUrl: string
+  thumbnailUrl?: string
+  permalink: string
+  caption?: string
+  timestamp: string
+  sizes?: {
+    medium?: { mediaUrl: string }
+    large?: { mediaUrl: string }
+  }
+}
 
-  if (!token || !userId) return []
+export async function fetchInstagramPosts(limit = 9): Promise<InstagramPost[]> {
+  const feedId = process.env.BEHOLD_FEED_ID
+
+  if (!feedId) return []
 
   try {
     const res = await fetch(
-      `https://graph.instagram.com/${userId}/media?fields=id,caption,media_url,permalink,thumbnail_url,timestamp,media_type&limit=${limit}&access_token=${token}`,
+      `https://feeds.behold.so/${feedId}`,
       { next: { revalidate: 3600 } }
     )
 
     if (!res.ok) return []
     const data = await res.json()
-    return data.data ?? []
+
+    const posts: BeholdPost[] = data.posts ?? []
+    return posts.slice(0, limit).map((post) => ({
+      id: post.id,
+      media_url: post.sizes?.medium?.mediaUrl ?? post.thumbnailUrl ?? post.mediaUrl,
+      permalink: post.permalink,
+      caption: post.caption,
+      timestamp: post.timestamp,
+      media_type: post.mediaType === 'VIDEO' ? 'VIDEO' : post.mediaType === 'CAROUSEL_ALBUM' ? 'CAROUSEL_ALBUM' : 'IMAGE',
+      thumbnail_url: post.sizes?.medium?.mediaUrl ?? post.thumbnailUrl,
+    }))
   } catch {
     return []
   }
