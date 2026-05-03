@@ -4,6 +4,7 @@ import Link from 'next/link'
 import { format } from 'date-fns'
 import { ptBR } from 'date-fns/locale'
 import type { Metadata } from 'next'
+import { TribalDivider } from '@/components/ui/TribalDivider'
 
 export const metadata: Metadata = {
   title: 'Vivências',
@@ -43,17 +44,7 @@ export default async function VivenciasPage() {
         </p>
       </div>
 
-      {/* Divisor tribal */}
-      <div className="w-full overflow-hidden" style={{ lineHeight: 0, height: 40 }} aria-hidden="true">
-        <svg viewBox="0 0 1440 40" preserveAspectRatio="none" className="w-full h-full" xmlns="http://www.w3.org/2000/svg">
-          <rect width="1440" height="8" fill="#7A2E2E" />
-          <rect y="8" width="1440" height="24" fill="#111" />
-          {Array.from({ length: 73 }).map((_, i) => (
-            <polygon key={i} points={`${i * 20 + 10},8 ${i * 20 + 20},20 ${i * 20 + 10},32 ${i * 20},20`} fill="#C9A84C" />
-          ))}
-          <rect y="32" width="1440" height="8" fill="#2D4A2D" />
-        </svg>
-      </div>
+      <TribalDivider />
 
       <div className="max-w-5xl mx-auto px-4 py-12">
         {/* O que são vivências */}
