@@ -3,14 +3,15 @@ export function SobreSection() {
     <section className="bg-[--color-floresta-escuro]">
       <div className="max-w-7xl mx-auto">
         <div className="grid grid-cols-1 md:grid-cols-2 min-h-[500px]">
-          {/* Foto real */}
-          <div className="relative overflow-hidden min-h-[320px] md:min-h-0">
-            <img
-              src="https://ejgoiouwzkmxuuvtxulv.supabase.co/storage/v1/object/public/events/foto%20quem%20somos.jpeg"
-              alt="Quem somos — Casa Xamânica SP"
-              className="w-full h-full object-cover object-center"
-            />
-            <div className="absolute inset-0 bg-gradient-to-r from-transparent to-[--color-floresta-escuro] opacity-40" />
+          {/* Foto real — quadrada centralizada */}
+          <div className="flex items-center justify-center bg-[--color-floresta-escuro] py-12 px-8">
+            <div className="relative w-[280px] h-[280px] md:w-[340px] md:h-[340px] overflow-hidden shrink-0">
+              <img
+                src="https://ejgoiouwzkmxuuvtxulv.supabase.co/storage/v1/object/public/events/foto%20quem%20somos.jpeg"
+                alt="Quem somos — Casa Xamânica SP"
+                className="w-full h-full object-cover object-center"
+              />
+            </div>
           </div>
 
           {/* Lado texto */}
