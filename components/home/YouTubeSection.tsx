@@ -3,7 +3,7 @@ import { format } from 'date-fns'
 import { ptBR } from 'date-fns/locale'
 
 export function YouTubeSection({ videos }: { videos: YouTubeVideo[] }) {
-  if (videos.length === 0) return null
+  if (videos.length === 0) return null // canal não configurado ainda
 
   return (
     <section className="py-20 px-4 bg-[--color-bege]">

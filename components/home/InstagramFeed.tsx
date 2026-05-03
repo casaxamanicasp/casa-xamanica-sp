@@ -3,7 +3,30 @@ import { InstagramPost } from '@/lib/instagram/fetch-posts'
 export function InstagramFeed({ posts }: { posts: InstagramPost[] }) {
   const handle = process.env.NEXT_PUBLIC_INSTAGRAM ?? 'casaxamanicasp'
 
-  if (posts.length === 0) return null
+  if (posts.length === 0) return (
+    <section className="py-20 px-4 bg-[--color-floresta-escuro]">
+      <div className="max-w-7xl mx-auto text-center">
+        <p className="text-[--color-dourado] text-xs tracking-[0.4em] uppercase mb-2">Siga-nos</p>
+        <a
+          href={`https://instagram.com/${handle}`}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="font-[--font-titulo] text-3xl md:text-4xl font-bold text-[--color-bege] hover:text-[--color-dourado] transition-colors block mb-8"
+        >
+          @{handle}
+        </a>
+        <a
+          href={`https://instagram.com/${handle}`}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-flex items-center gap-2 border border-[--color-bege] text-[--color-bege] px-6 py-3 text-sm font-bold tracking-wide uppercase rounded hover:bg-[--color-bege] hover:text-[--color-floresta-escuro] transition-all"
+        >
+          <InstagramIcon className="w-4 h-4" />
+          Seguir no Instagram
+        </a>
+      </div>
+    </section>
+  )
 
   return (
     <section className="py-20 px-4 bg-[--color-floresta-escuro]">
