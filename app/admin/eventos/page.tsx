@@ -5,6 +5,7 @@ import { ptBR } from 'date-fns/locale'
 import { DeleteEventButton } from './DeleteEventButton'
 
 export default async function AdminEventosPage() {
+  try {
   const supabase = createAdminClient()
   const { data: events, error } = await supabase
     .from('events')
@@ -70,4 +71,7 @@ export default async function AdminEventosPage() {
       </div>
     </div>
   )
+  } catch (e: any) {
+    return <div className="p-8 text-red-600 font-mono text-sm bg-red-50 rounded whitespace-pre-wrap"><strong>Erro:</strong> {e?.message ?? String(e)}</div>
+  }
 }
