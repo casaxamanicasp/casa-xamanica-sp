@@ -83,14 +83,18 @@ export default async function EventoPage({ params }: Props) {
               </div>
             )}
 
-            {/* Cronograma */}
+            {/* Cronograma / Vivências e Atividades */}
             {event.schedule.length > 0 && (
               <div className="bg-white rounded-lg p-6 shadow-[--shadow-card]">
-                <h2 className="font-[--font-titulo] text-xl font-bold text-[--color-floresta-escuro] mb-4">Cronograma</h2>
+                <h2 className="font-[--font-titulo] text-xl font-bold text-[--color-floresta-escuro] mb-4">
+                  {event.event_type === 'vivencia' ? 'Vivências e Atividades' : 'Cronograma'}
+                </h2>
                 <div className="space-y-3">
                   {event.schedule.map((item, i) => (
                     <div key={i} className="flex gap-4 items-start">
-                      <span className="font-[--font-titulo] font-bold text-[--color-dourado] min-w-[48px] text-sm">{item.time}</span>
+                      {item.time && (
+                        <span className="font-[--font-titulo] font-bold text-[--color-dourado] min-w-[48px] text-sm shrink-0">{item.time}</span>
+                      )}
                       <span className="text-[--color-preto] text-sm">{item.activity}</span>
                     </div>
                   ))}
