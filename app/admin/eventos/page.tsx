@@ -6,10 +6,14 @@ import { deleteEvent } from './actions'
 
 export default async function AdminEventosPage() {
   const supabase = createAdminClient()
-  const { data: events } = await supabase
+  const { data: events, error } = await supabase
     .from('events')
     .select('id, title, date, spots_total, spots_available, is_active, pricing_tiers, event_type')
     .order('date', { ascending: false })
+
+  if (error) {
+    return <div className="p-8 text-red-600 font-mono text-sm bg-red-50 rounded"><strong>Erro Supabase:</strong> {error.message}</div>
+  }
 
   return (
     <div>
