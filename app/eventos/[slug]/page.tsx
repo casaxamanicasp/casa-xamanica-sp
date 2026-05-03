@@ -46,13 +46,15 @@ export default async function EventoPage({ params }: Props) {
           />
         )}
         <div className="relative z-10 max-w-5xl mx-auto px-4 py-16 text-[--color-bege]">
-          <div className="flex flex-wrap gap-2 mb-4">
-            {event.medicines.map((m) => (
-              <span key={m} className="text-xs bg-[--color-floresta-claro] text-[--color-bege] px-3 py-1 rounded-full">
-                {m}
-              </span>
-            ))}
-          </div>
+          {event.event_type !== 'vivencia' && event.medicines.length > 0 && (
+            <div className="flex flex-wrap gap-2 mb-4">
+              {event.medicines.map((m) => (
+                <span key={m} className="text-xs bg-[--color-floresta-claro] text-[--color-bege] px-3 py-1 rounded-full">
+                  {m}
+                </span>
+              ))}
+            </div>
+          )}
           <h1 className="font-[--font-titulo] text-3xl md:text-5xl font-bold mb-4">{event.title}</h1>
           <div className="flex flex-wrap gap-6 text-sm opacity-90">
             <span>📅 {format(date, "EEEE, dd 'de' MMMM 'de' yyyy", { locale: ptBR })}</span>
