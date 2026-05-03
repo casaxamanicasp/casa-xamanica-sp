@@ -7,7 +7,6 @@ export async function GaleriaSection() {
     .from('gallery_images')
     .select('id, url, caption')
     .order('display_order', { ascending: true })
-    .limit(6)
 
   if (!images || images.length === 0) return null
 
@@ -21,22 +20,21 @@ export async function GaleriaSection() {
           </h2>
         </div>
 
-        <div className="grid grid-cols-2 md:grid-cols-3 gap-2">
-          {images.map((img, i) => (
+        <div className="columns-2 md:columns-3 lg:columns-4 gap-2 space-y-2">
+          {images.map((img) => (
             <Link
               key={img.id}
               href="/galeria"
-              className={`group relative overflow-hidden bg-[#111] ${i === 0 ? 'col-span-2 md:col-span-1 row-span-2' : ''}`}
-              style={{ aspectRatio: i === 0 ? '1/2' : '1/1' }}
+              className="group relative overflow-hidden bg-[#111] break-inside-avoid block"
             >
               <img
                 src={img.url}
                 alt={img.caption ?? 'Galeria Casa Xamânica'}
-                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                className="w-full object-cover group-hover:scale-105 transition-transform duration-500"
               />
               {img.caption && (
-                <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4">
-                  <p className="text-white text-xs">{img.caption}</p>
+                <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-3">
+                  <p className="text-white text-xs leading-snug">{img.caption}</p>
                 </div>
               )}
             </Link>
