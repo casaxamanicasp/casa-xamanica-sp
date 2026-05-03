@@ -6,7 +6,7 @@ export function SobreSection() {
           {/* Foto real */}
           <div className="relative overflow-hidden min-h-[320px] md:min-h-0">
             <img
-              src="https://ejgoiouwzkmxuuvtxulv.supabase.co/storage/v1/object/public/events/quem%20somos.jpeg"
+              src="https://ejgoiouwzkmxuuvtxulv.supabase.co/storage/v1/object/public/events/foto%20quem%20somos.jpeg"
               alt="Quem somos — Casa Xamânica SP"
               className="w-full h-full object-cover object-center"
             />
