@@ -28,7 +28,7 @@ export function TribalDivider({ flip = false }: { flip?: boolean }) {
         xmlns="http://www.w3.org/2000/svg"
       >
         {/* Fundo totalmente preto */}
-        <rect width="1440" height={H} fill="#111" />
+        <rect width="1440" height={H} fill="#0F1F0F" />
 
         {/* === Faixa central: diamantes kene aninhados === */}
         <defs>
@@ -41,7 +41,7 @@ export function TribalDivider({ flip = false }: { flip?: boolean }) {
             y={borderH}
           >
             {/* Fundo do tile */}
-            <rect width={tileW} height={midH} fill="#111" />
+            <rect width={tileW} height={midH} fill="#0F1F0F" />
 
             {/* Camada 1 — diamante externo: branco */}
             <polygon
@@ -51,7 +51,7 @@ export function TribalDivider({ flip = false }: { flip?: boolean }) {
             {/* Camada 2 — anel preto (75%) */}
             <polygon
               points={`${cx},${cy - hh * 0.75} ${cx + hw * 0.75},${cy} ${cx},${cy + hh * 0.75} ${cx - hw * 0.75},${cy}`}
-              fill="#111"
+              fill="#0F1F0F"
             />
             {/* Camada 3 — anel branco (52%) */}
             <polygon
@@ -61,7 +61,7 @@ export function TribalDivider({ flip = false }: { flip?: boolean }) {
             {/* Camada 4 — anel preto (32%) */}
             <polygon
               points={`${cx},${cy - hh * 0.32} ${cx + hw * 0.32},${cy} ${cx},${cy + hh * 0.32} ${cx - hw * 0.32},${cy}`}
-              fill="#111"
+              fill="#0F1F0F"
             />
             {/* Camada 5 — miolo branco (14%) */}
             <polygon
@@ -92,7 +92,7 @@ export function TribalDivider({ flip = false }: { flip?: boolean }) {
           <polygon
             key={`ts-${i}`}
             points={`${i * 16 + 8},0 ${i * 16 + 12},${borderH * 0.5} ${i * 16 + 16},0`}
-            fill="#111"
+            fill="#0F1F0F"
           />
         ))}
 
@@ -110,7 +110,7 @@ export function TribalDivider({ flip = false }: { flip?: boolean }) {
           <polygon
             key={`bs-${i}`}
             points={`${i * 16 + 8},${H} ${i * 16 + 12},${H - borderH * 0.5} ${i * 16 + 16},${H}`}
-            fill="#111"
+            fill="#0F1F0F"
           />
         ))}
       </svg>
