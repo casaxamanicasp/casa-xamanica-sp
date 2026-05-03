@@ -1,5 +1,6 @@
 import { createClient } from '@/lib/supabase/server'
 import type { Metadata } from 'next'
+import { TribalDivider } from '@/components/ui/TribalDivider'
 
 export const metadata: Metadata = {
   title: 'Galeria',
@@ -20,22 +21,24 @@ export default async function GaleriaPage() {
     .order('display_order', { ascending: true })
 
   return (
-    <div className="min-h-screen bg-[#080808]">
+    <div className="min-h-screen bg-[--color-creme]">
       {/* Cabeçalho */}
-      <div className="bg-[#0D0D0D] py-20 px-4 text-center border-b border-[#1a1a1a]">
+      <div className="bg-[--color-floresta-escuro] py-20 px-4 text-center">
         <p className="text-[--color-dourado] text-xs tracking-[0.5em] uppercase mb-3">Memórias</p>
-        <h1 className="font-[--font-titulo] text-4xl md:text-5xl font-bold text-white mb-4 tracking-wider">
+        <h1 className="font-[--font-titulo] text-4xl md:text-5xl font-bold text-[--color-bege] mb-4 tracking-wider">
           GALERIA
         </h1>
-        <p className="text-[#666] max-w-xl mx-auto text-sm leading-relaxed">
+        <p className="text-[--color-bege] opacity-70 max-w-xl mx-auto text-sm leading-relaxed">
           Registros das cerimônias, vivências e momentos sagrados da Casa Xamânica SP.
         </p>
       </div>
 
+      <TribalDivider />
+
       <div className="max-w-6xl mx-auto px-4 py-12">
         {(images ?? []).length === 0 ? (
           <div className="text-center py-24">
-            <p className="text-[#444] text-lg">Em breve, fotos das nossas cerimônias.</p>
+            <p className="text-[--color-terra] text-lg">Em breve, fotos das nossas cerimônias.</p>
           </div>
         ) : (
           <div className="columns-2 md:columns-3 lg:columns-4 gap-2 space-y-2">

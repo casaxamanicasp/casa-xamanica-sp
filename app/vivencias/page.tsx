@@ -34,12 +34,12 @@ export default async function VivenciasPage() {
   return (
     <div className="min-h-screen bg-[--color-creme]">
       {/* Cabeçalho */}
-      <div className="bg-[#0D0D0D] py-20 px-4 text-center">
+      <div className="bg-[--color-floresta-escuro] py-20 px-4 text-center">
         <p className="text-[--color-dourado] text-xs tracking-[0.5em] uppercase mb-3">Experiências</p>
-        <h1 className="font-[--font-titulo] text-4xl md:text-5xl font-bold text-white mb-4 tracking-wider">
+        <h1 className="font-[--font-titulo] text-4xl md:text-5xl font-bold text-[--color-bege] mb-4 tracking-wider">
           VIVÊNCIAS
         </h1>
-        <p className="text-[#aaa] max-w-xl mx-auto text-base leading-relaxed">
+        <p className="text-[--color-bege] opacity-80 max-w-xl mx-auto text-base leading-relaxed">
           Retiros, imersões e encontros de aprofundamento — um mergulho mais profundo na medicina ancestral indígena.
         </p>
       </div>
