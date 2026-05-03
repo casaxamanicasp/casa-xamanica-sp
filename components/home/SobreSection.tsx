@@ -5,7 +5,7 @@ export function SobreSection() {
         <div className="grid grid-cols-1 md:grid-cols-2 min-h-[500px]">
           {/* Foto real — quadrada centralizada */}
           <div className="flex items-center justify-center bg-[--color-floresta-escuro] py-12 px-8">
-            <div className="relative w-[280px] h-[280px] md:w-[340px] md:h-[340px] overflow-hidden shrink-0">
+            <div className="relative w-[360px] h-[360px] md:w-[460px] md:h-[460px] overflow-hidden shrink-0">
               <img
                 src="https://ejgoiouwzkmxuuvtxulv.supabase.co/storage/v1/object/public/events/foto%20quem%20somos.jpeg"
                 alt="Quem somos — Casa Xamânica SP"
