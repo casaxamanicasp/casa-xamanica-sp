@@ -122,6 +122,13 @@ function EventRow({ event, past = false }: { event: Event; past?: boolean }) {
   return (
     <Link href={`/eventos/${event.slug}`} className="group block">
       <div className="bg-white rounded-lg border border-[--color-bege-escuro] shadow-[--shadow-card] hover:shadow-[--shadow-hover] transition-all overflow-hidden flex flex-col md:flex-row">
+        {/* Foto de capa (mobile: topo, desktop: lado esquerdo) */}
+        {event.cover_image && (
+          <div className="md:hidden w-full h-48 overflow-hidden">
+            <img src={event.cover_image} alt={event.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+          </div>
+        )}
+
         {/* Data */}
         <div className="bg-[--color-floresta-escuro] text-[--color-bege] p-6 flex flex-col items-center justify-center min-w-[120px] text-center">
           <span className="font-[--font-titulo] text-3xl font-bold">{format(date, 'dd')}</span>
@@ -174,6 +181,13 @@ function EventRow({ event, past = false }: { event: Event; past?: boolean }) {
             )}
           </div>
         </div>
+
+        {/* Foto de capa (desktop: direita) */}
+        {event.cover_image && (
+          <div className="hidden md:block w-44 shrink-0 overflow-hidden">
+            <img src={event.cover_image} alt={event.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+          </div>
+        )}
       </div>
     </Link>
   )
