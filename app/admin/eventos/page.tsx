@@ -2,7 +2,7 @@ import { createAdminClient } from '@/lib/supabase/admin'
 import Link from 'next/link'
 import { format } from 'date-fns'
 import { ptBR } from 'date-fns/locale'
-import { deleteEvent } from './actions'
+import { DeleteEventButton } from './DeleteEventButton'
 
 export default async function AdminEventosPage() {
   const supabase = createAdminClient()
@@ -58,12 +58,7 @@ export default async function AdminEventosPage() {
                   <td className="px-4 py-3">
                     <div className="flex items-center gap-3">
                       <Link href={`/admin/eventos/${event.id}`} className="text-xs text-[--color-floresta] hover:underline">Editar</Link>
-                      <form action={deleteEvent}>
-                        <input type="hidden" name="id" value={event.id} />
-                        <button type="submit" className="text-xs text-red-500 hover:underline" onClick={(e) => { if (!confirm('Excluir este evento?')) e.preventDefault() }}>
-                          Excluir
-                        </button>
-                      </form>
+                      <DeleteEventButton id={event.id} />
                     </div>
                   </td>
                 </tr>
