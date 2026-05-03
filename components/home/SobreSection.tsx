@@ -3,44 +3,14 @@ export function SobreSection() {
     <section className="bg-[--color-floresta-escuro]">
       <div className="max-w-7xl mx-auto">
         <div className="grid grid-cols-1 md:grid-cols-2 min-h-[500px]">
-          {/* Lado visual — mosaico geométrico indígena */}
-          <div className="relative bg-[#111] flex items-center justify-center overflow-hidden min-h-[320px] md:min-h-0">
-            {/* Padrão kene de fundo */}
-            <div
-              className="absolute inset-0 opacity-10"
-              style={{
-                backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32'%3E%3Crect width='32' height='32' fill='none'/%3E%3Cpath d='M0 16 L16 0 L32 16 L16 32 Z' fill='none' stroke='%23C9A84C' stroke-width='0.6'/%3E%3C/svg%3E")`,
-                backgroundSize: '32px 32px',
-              }}
+          {/* Foto real */}
+          <div className="relative overflow-hidden min-h-[320px] md:min-h-0">
+            <img
+              src="https://ejgoiouwzkmxuuvtxulv.supabase.co/storage/v1/object/public/events/quem%20somos.jpeg"
+              alt="Quem somos — Casa Xamânica SP"
+              className="w-full h-full object-cover object-center"
             />
-            {/* Glow central */}
-            <div
-              className="absolute inset-0 opacity-20"
-              style={{ background: 'radial-gradient(ellipse 60% 60% at 50% 50%, #2D4A2D 0%, transparent 70%)' }}
-            />
-
-            {/* Mandala / Tipé grande centralizado */}
-            <div className="relative z-10 flex flex-col items-center gap-6 py-16 px-8">
-              <svg width="200" height="220" viewBox="0 0 60 66" fill="none">
-                {/* Círculos concêntricos */}
-                <circle cx="30" cy="34" r="28" stroke="#C9A84C" strokeWidth="0.4" fill="none" opacity="0.3" />
-                <circle cx="30" cy="34" r="22" stroke="#C9A84C" strokeWidth="0.4" fill="none" opacity="0.2" />
-                <circle cx="30" cy="34" r="16" stroke="#C9A84C" strokeWidth="0.4" fill="none" opacity="0.2" />
-                {/* Tipé */}
-                <line x1="30" y1="3" x2="4" y2="57" stroke="#C9A84C" strokeWidth="1.8" strokeLinecap="round" />
-                <line x1="30" y1="3" x2="56" y2="57" stroke="#C9A84C" strokeWidth="1.8" strokeLinecap="round" />
-                <line x1="30" y1="3" x2="30" y2="7" stroke="#F5EDD6" strokeWidth="2.5" strokeLinecap="round" />
-                <path d="M13 44 Q30 38 47 44" stroke="#C9A84C" strokeWidth="1.2" fill="none" />
-                <path d="M9 51 Q30 44 51 51" stroke="#C9A84C" strokeWidth="1.2" fill="none" />
-                <path d="M7 57 Q30 50 53 57" stroke="#C9A84C" strokeWidth="1.2" fill="none" />
-                <ellipse cx="30" cy="57" rx="26" ry="3.5" stroke="#C9A84C" strokeWidth="0.8" fill="none" />
-              </svg>
-
-              {/* Estrelas decorativas */}
-              <div className="flex gap-4 text-[--color-dourado] text-lg opacity-60">
-                <span>✦</span><span>✦</span><span>✦</span>
-              </div>
-            </div>
+            <div className="absolute inset-0 bg-gradient-to-r from-transparent to-[--color-floresta-escuro] opacity-40" />
           </div>
 
           {/* Lado texto */}
