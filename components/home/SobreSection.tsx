@@ -34,9 +34,9 @@ export function SobreSection() {
 
             <div className="grid grid-cols-3 gap-4 pt-6 border-t border-[#222]">
               {[
-                { num: '5+', label: 'Anos' },
-                { num: '500+', label: 'Participantes' },
-                { num: '100%', label: 'Tradição' },
+                { num: '7+', label: 'Anos' },
+                { num: '300+', label: 'Cerimônias' },
+                { num: '5.000+', label: 'Participantes' },
               ].map((stat) => (
                 <div key={stat.label} className="text-center">
                   <p className="font-[--font-titulo] text-3xl font-bold text-[--color-dourado]">{stat.num}</p>
