@@ -68,11 +68,20 @@ export function NextEventsSection({ events }: { events: Event[] }) {
   )
 }
 
+function getDurationDays(event: Event): number | null {
+  if (event.event_type !== 'vivencia' || !event.end_date) return null
+  const start = new Date(event.date)
+  const end = new Date(event.end_date)
+  const diff = Math.round((end.getTime() - start.getTime()) / (1000 * 60 * 60 * 24))
+  return diff > 0 ? diff + 1 : null // +1 para contar dia de início e fim
+}
+
 function EventCard({ event, reverse }: { event: Event; reverse: boolean }) {
   const price = getCurrentPrice(event)
   const date = new Date(event.date)
   const spotsLeft = event.spots_available
   const sold = spotsLeft === 0
+  const durationDays = getDurationDays(event)
 
   return (
     <Link href={`/eventos/${event.slug}`} className="group block border-b border-white/20 last:border-b-0">
@@ -102,9 +111,17 @@ function EventCard({ event, reverse }: { event: Event; reverse: boolean }) {
 
         {/* Conteúdo */}
         <div className="md:w-[55%] flex flex-col justify-center px-8 py-10">
-          <div className="flex items-center gap-2 text-xs text-white font-medium mb-3 uppercase tracking-[0.15em]">
+          <div className="flex items-center gap-3 text-xs text-white font-medium mb-3 uppercase tracking-[0.15em]">
             <CalendarIcon />
-            {format(date, "dd 'de' MMMM 'de' yyyy", { locale: ptBR })}
+            {event.event_type === 'vivencia' && event.end_date
+              ? `${format(date, "dd/MM/yyyy", { locale: ptBR })} → ${format(new Date(event.end_date), "dd/MM/yyyy", { locale: ptBR })}`
+              : format(date, "dd 'de' MMMM 'de' yyyy", { locale: ptBR })
+            }
+            {durationDays && (
+              <span className="bg-[--color-dourado] text-[#0D0D0D] px-2 py-0.5 font-bold tracking-normal normal-case">
+                {durationDays} dias
+              </span>
+            )}
           </div>
 
           <h3 className="font-[--font-titulo] text-2xl font-bold text-white mb-3 group-hover:text-[--color-dourado] transition-colors leading-tight">

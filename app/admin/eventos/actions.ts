@@ -54,8 +54,18 @@ export async function upsertEvent(formData: FormData) {
 
   const eventType = (formData.get('event_type') as string) || 'cerimonia'
 
-  const rawEndDate = formData.get('end_date') as string | null
-  const endDate = rawEndDate && rawEndDate.trim() ? rawEndDate : null
+  // end_date: cerimônia usa data-início + horário-término; vivência usa data-término
+  let endDate: string | null = null
+  if (eventType === 'cerimonia') {
+    const endTime = formData.get('end_time') as string | null
+    if (endTime && endTime.trim()) {
+      const startDateStr = (formData.get('date') as string).slice(0, 10)
+      endDate = `${startDateStr}T${endTime}`
+    }
+  } else {
+    const rawEndDate = formData.get('end_date') as string | null
+    endDate = rawEndDate && rawEndDate.trim() ? rawEndDate : null
+  }
 
   const payload = {
     title,

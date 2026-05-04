@@ -49,9 +49,17 @@ export function EventForm({ event }: { event?: Event }) {
         </div>
 
         <FormField label="Título *" name="title" defaultValue={event?.title} required />
-        <FormField label="Data e Hora de Início *" name="date" type="datetime-local" defaultValue={event?.date?.slice(0, 16)} required />
-        {eventType === 'vivencia' && (
-          <FormField label="Data e Hora de Término" name="end_date" type="datetime-local" defaultValue={event?.end_date?.slice(0, 16) ?? ''} />
+
+        {eventType === 'cerimonia' ? (
+          <div className="grid grid-cols-2 gap-4">
+            <FormField label="Data e Hora de Início *" name="date" type="datetime-local" defaultValue={event?.date?.slice(0, 16)} required />
+            <FormField label="Horário de Término" name="end_time" type="time" defaultValue={event?.end_date?.slice(11, 16) ?? ''} />
+          </div>
+        ) : (
+          <div className="grid grid-cols-2 gap-4">
+            <FormField label="Data de Início *" name="date" type="date" defaultValue={event?.date?.slice(0, 10)} required />
+            <FormField label="Data de Término" name="end_date" type="date" defaultValue={event?.end_date?.slice(0, 10) ?? ''} />
+          </div>
         )}
         <FormField label="Local" name="location_name" defaultValue={event?.location_name ?? 'Casa Árvore da Vida'} />
         <FormField label="Endereço" name="address" defaultValue={event?.address} />

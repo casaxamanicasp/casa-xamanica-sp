@@ -57,12 +57,16 @@ export default async function EventoPage({ params }: Props) {
           )}
           <h1 className="font-[--font-titulo] text-3xl md:text-5xl font-bold mb-4">{event.title}</h1>
           <div className="flex flex-wrap gap-6 text-sm opacity-90">
-            {event.event_type === 'vivencia' && event.end_date ? (
-              <span>📅 {format(date, "dd/MM/yyyy", { locale: ptBR })} → {format(new Date(event.end_date), "dd/MM/yyyy", { locale: ptBR })}</span>
+            {event.event_type === 'vivencia' ? (
+              <>
+                <span>📅 {format(date, "dd/MM/yyyy", { locale: ptBR })}{event.end_date ? ` → ${format(new Date(event.end_date), "dd/MM/yyyy", { locale: ptBR })}` : ''}</span>
+              </>
             ) : (
-              <span>📅 {format(date, "EEEE, dd 'de' MMMM 'de' yyyy", { locale: ptBR })}</span>
+              <>
+                <span>📅 {format(date, "EEEE, dd 'de' MMMM 'de' yyyy", { locale: ptBR })}</span>
+                <span>🕐 {format(date, 'HH:mm')}{event.end_date ? ` — ${format(new Date(event.end_date), 'HH:mm')}` : ''}</span>
+              </>
             )}
-            <span>🕐 {format(date, 'HH:mm')}{event.event_type === 'vivencia' && event.end_date ? ` → ${format(new Date(event.end_date), 'HH:mm')}` : ''}</span>
             <span>📍 {event.location_name}</span>
             <span>👥 {event.spots_available} vagas disponíveis</span>
           </div>

@@ -117,7 +117,7 @@ function EventRow({ event, past = false }: { event: Event; past?: boolean }) {
             </h2>
             <div className="flex flex-wrap items-center gap-3 text-sm text-[--color-terra] mb-2">
               <span>📍 {event.location_name}</span>
-              <span>🕐 {format(date, 'HH:mm')}</span>
+              <span>🕐 {format(date, 'HH:mm')}{event.end_date ? ` — ${format(new Date(event.end_date), 'HH:mm')}` : ''}</span>
             </div>
             {event.medicines.length > 0 && (
               <div className="flex flex-wrap gap-1">

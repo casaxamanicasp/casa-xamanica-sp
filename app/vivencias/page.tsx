@@ -104,11 +104,20 @@ export default async function VivenciasPage() {
   )
 }
 
+function getDurationDays(event: Event): number | null {
+  if (!event.end_date) return null
+  const start = new Date(event.date)
+  const end = new Date(event.end_date)
+  const diff = Math.round((end.getTime() - start.getTime()) / (1000 * 60 * 60 * 24))
+  return diff > 0 ? diff + 1 : null
+}
+
 function EventRow({ event, past = false }: { event: Event; past?: boolean }) {
   const price = getCurrentPrice(event)
   const date = new Date(event.date)
   const spotsLeft = event.spots_available
   const sold = spotsLeft === 0
+  const durationDays = getDurationDays(event)
 
   return (
     <Link href={`/eventos/${event.slug}`} className="group block">
@@ -127,6 +136,11 @@ function EventRow({ event, past = false }: { event: Event; past?: boolean }) {
             {format(date, 'MMM', { locale: ptBR })}
           </span>
           <span className="text-sm opacity-80">{format(date, 'yyyy')}</span>
+          {durationDays && (
+            <span className="mt-2 bg-[--color-dourado] text-[#0D0D0D] text-xs font-bold px-2 py-0.5">
+              {durationDays} dias
+            </span>
+          )}
         </div>
 
         {/* Conteúdo */}
@@ -140,7 +154,10 @@ function EventRow({ event, past = false }: { event: Event; past?: boolean }) {
             </h2>
             <div className="flex flex-wrap items-center gap-3 text-sm text-[--color-terra] mb-2">
               <span>📍 {event.location_name}</span>
-              <span>🕐 {format(date, 'HH:mm')}</span>
+              {event.end_date
+                ? <span>📅 {format(date, 'dd/MM/yyyy', { locale: ptBR })} → {format(new Date(event.end_date), 'dd/MM/yyyy', { locale: ptBR })}</span>
+                : <span>📅 {format(date, "dd 'de' MMMM 'de' yyyy", { locale: ptBR })}</span>
+              }
             </div>
             {event.medicines.length > 0 && (
               <div className="flex flex-wrap gap-1">
