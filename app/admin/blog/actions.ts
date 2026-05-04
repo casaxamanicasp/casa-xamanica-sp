@@ -20,6 +20,9 @@ export async function upsertPost(formData: FormData) {
   const slug = slugify(title, { lower: true, strict: true, locale: 'pt' })
   const isPublished = formData.get('is_published') === 'on'
 
+  const sourceRaw = (formData.get('source') as string)?.trim() || null
+  const sourceUrlRaw = (formData.get('source_url') as string)?.trim() || null
+
   const payload = {
     title,
     slug,
@@ -27,6 +30,8 @@ export async function upsertPost(formData: FormData) {
     excerpt: formData.get('excerpt') as string,
     cover_image: formData.get('cover_image') as string,
     author: formData.get('author') as string || 'Casa Xamânica SP',
+    source: sourceRaw,
+    source_url: sourceUrlRaw,
     is_published: isPublished,
     published_at: isPublished ? new Date().toISOString() : null,
   }

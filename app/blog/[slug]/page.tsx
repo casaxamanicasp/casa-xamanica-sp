@@ -51,6 +51,25 @@ export default async function BlogPostPage({ params }: Props) {
           className="prose-xamanica"
           dangerouslySetInnerHTML={{ __html: post.content ?? '' }}
         />
+
+        {/* Fonte / Referência */}
+        {post.source && (
+          <div className="mt-10 pt-6 border-t border-[--color-bege-escuro]">
+            <p className="text-xs text-gray-400 uppercase tracking-widest mb-1">Fonte</p>
+            {post.source_url ? (
+              <a
+                href={post.source_url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-sm text-[--color-floresta] hover:underline font-medium"
+              >
+                {post.source} ↗
+              </a>
+            ) : (
+              <p className="text-sm text-[--color-terra] font-medium">{post.source}</p>
+            )}
+          </div>
+        )}
       </div>
     </div>
   )

@@ -11,6 +11,10 @@ export function PostForm({ post }: { post?: any }) {
         <FormField label="Título *" name="title" defaultValue={post?.title} required />
         <FormField label="Autor" name="author" defaultValue={post?.author ?? 'Casa Xamânica SP'} />
         <FormField label="URL da Imagem de Capa" name="cover_image" defaultValue={post?.cover_image ?? ''} />
+        <div className="grid grid-cols-2 gap-4">
+          <FormField label="Fonte / Referência" name="source" defaultValue={post?.source ?? ''} placeholder="Ex: Brasil de Fato, Portal Katukina..." />
+          <FormField label="Link da Fonte (opcional)" name="source_url" defaultValue={post?.source_url ?? ''} placeholder="https://..." />
+        </div>
         <div>
           <label className="block text-xs font-bold text-gray-700 uppercase tracking-wide mb-1">Resumo</label>
           <textarea name="excerpt" defaultValue={post?.excerpt ?? ''} rows={2} className="w-full border border-gray-200 rounded px-3 py-2 text-sm focus:outline-none focus:border-[--color-floresta] resize-none" />
@@ -37,11 +41,11 @@ export function PostForm({ post }: { post?: any }) {
   )
 }
 
-function FormField({ label, name, defaultValue, required }: { label: string; name: string; defaultValue?: string; required?: boolean }) {
+function FormField({ label, name, defaultValue, required, placeholder }: { label: string; name: string; defaultValue?: string; required?: boolean; placeholder?: string }) {
   return (
     <div>
       <label className="block text-xs font-bold text-gray-700 uppercase tracking-wide mb-1">{label}</label>
-      <input type="text" name={name} defaultValue={defaultValue} required={required} className="w-full border border-gray-200 rounded px-3 py-2 text-sm focus:outline-none focus:border-[--color-floresta]" />
+      <input type="text" name={name} defaultValue={defaultValue} required={required} placeholder={placeholder} className="w-full border border-gray-200 rounded px-3 py-2 text-sm focus:outline-none focus:border-[--color-floresta] placeholder:text-gray-300" />
     </div>
   )
 }

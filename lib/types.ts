@@ -45,6 +45,8 @@ export type BlogPost = {
   excerpt: string | null
   cover_image: string | null
   author: string
+  source: string | null        // Fonte / referência original do conteúdo
+  source_url: string | null    // Link da fonte (opcional)
   published_at: string | null
   is_published: boolean
   created_at: string
