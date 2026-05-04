@@ -16,12 +16,7 @@ export default async function ApoiadoresPage() {
     .eq('is_active', true)
     .order('display_order', { ascending: true })
 
-  const byCategory = (supporters as Supporter[] ?? []).reduce<Record<string, Supporter[]>>((acc, s) => {
-    const cat = s.category ?? 'Parceiros'
-    if (!acc[cat]) acc[cat] = []
-    acc[cat].push(s)
-    return acc
-  }, {})
+  const all = (supporters as Supporter[] ?? [])
 
   return (
     <div className="min-h-screen bg-[--color-creme]">
@@ -38,21 +33,14 @@ export default async function ApoiadoresPage() {
       <TribalDivider />
 
       <div className="max-w-5xl mx-auto px-4 py-12">
-        {Object.keys(byCategory).length === 0 ? (
+        {all.length === 0 ? (
           <p className="text-center text-[--color-terra] py-20">Em breve novos apoiadores.</p>
         ) : (
-          Object.entries(byCategory).map(([category, items]) => (
-            <div key={category} className="mb-12">
-              <h2 className="font-[--font-titulo] text-xl font-bold text-[--color-floresta-escuro] mb-6 pb-2 border-b-2 border-[--color-dourado]">
-                {category}
-              </h2>
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {items.map((supporter) => (
-                  <SupporterCard key={supporter.id} supporter={supporter} />
-                ))}
-              </div>
-            </div>
-          ))
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {all.map((supporter) => (
+              <SupporterCard key={supporter.id} supporter={supporter} />
+            ))}
+          </div>
         )}
       </div>
     </div>
