@@ -75,7 +75,7 @@ function EventCard({ event, reverse }: { event: Event; reverse: boolean }) {
   const sold = spotsLeft === 0
 
   return (
-    <Link href={`/eventos/${event.slug}`} className="group block border-b border-[#1a1a1a] last:border-b-0">
+    <Link href={`/eventos/${event.slug}`} className="group block border-b border-white/20 last:border-b-0">
       <div className={`flex flex-col md:flex-row ${reverse ? 'md:flex-row-reverse' : ''} min-h-[280px] hover:bg-[#111] transition-colors duration-300`}>
         {/* Imagem — quadrada pequena, expande no hover */}
         <div className="relative shrink-0 self-center mx-6 my-6 md:my-0 w-[200px] h-[200px] md:w-[220px] md:h-[220px] overflow-hidden group-hover:w-[340px] group-hover:h-[340px] transition-all duration-500 ease-in-out bg-[#111]">
