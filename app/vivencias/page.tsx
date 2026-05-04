@@ -47,26 +47,7 @@ export default async function VivenciasPage() {
       <TribalDivider />
 
       <div className="max-w-5xl mx-auto px-4 py-12">
-        {/* O que são vivências */}
-        <div className="bg-white border border-[--color-bege-escuro] rounded-lg p-8 mb-10">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
-            {[
-              { icon: '🌿', title: 'Retiros', desc: 'Imersões de 2 a 4 dias em contato com a natureza e as medicinas.' },
-              { icon: '🥁', title: 'Encontros', desc: 'Círculos temáticos, cantos, danças e práticas ancestrais.' },
-              { icon: '🌙', title: 'Jornadas', desc: 'Experiências de cura guiadas por práticas indígenas tradicionais.' },
-            ].map((item) => (
-              <div key={item.title} className="space-y-2">
-                <div className="text-3xl">{item.icon}</div>
-                <h3 className="font-[--font-titulo] font-bold text-[--color-floresta-escuro] text-sm uppercase tracking-wide">
-                  {item.title}
-                </h3>
-                <p className="text-xs text-[--color-terra] leading-relaxed">{item.desc}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        {upcoming.length === 0 ? (
+{upcoming.length === 0 ? (
           <div className="text-center py-20 border border-[--color-bege-escuro] rounded-lg bg-white">
             <p className="text-[--color-terra] text-lg mb-2">Novas vivências em breve.</p>
             <p className="text-sm text-[#999] mb-4">Siga nosso Instagram para ser avisado primeiro.</p>
