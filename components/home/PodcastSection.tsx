@@ -17,8 +17,25 @@ export function PodcastSection({ limit }: { limit?: number }) {
   const videos = limit ? PODCAST_VIDEOS.slice(0, limit) : PODCAST_VIDEOS
 
   return (
-    <section className="py-20 px-4 bg-[--color-floresta-escuro]">
-      <div className="max-w-6xl mx-auto">
+    <section className="relative py-20 px-4 bg-[#0D0D0D] overflow-hidden">
+
+      {/* Padrão kene de fundo */}
+      <div
+        className="absolute inset-0 opacity-[0.045]"
+        style={{
+          backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='48' height='48'%3E%3Cpath d='M0 24 L24 0 L48 24 L24 48 Z' fill='none' stroke='%23F5EDD6' stroke-width='0.8'/%3E%3Cpath d='M12 24 L24 12 L36 24 L24 36 Z' fill='%23F5EDD6' opacity='0.3'/%3E%3C/svg%3E")`,
+          backgroundSize: '48px 48px',
+        }}
+      />
+      {/* Brilho central verde suave */}
+      <div
+        className="absolute inset-0 opacity-30"
+        style={{
+          background: 'radial-gradient(ellipse 80% 60% at 50% 50%, #0F1F0F 0%, transparent 70%)',
+        }}
+      />
+
+      <div className="relative z-10 max-w-6xl mx-auto">
         <div className="text-center mb-12">
           <p className="text-[--color-dourado] text-xs tracking-[0.5em] uppercase mb-3">Mídia</p>
           <h2 className="font-[--font-titulo] text-3xl md:text-4xl font-bold text-[--color-bege] tracking-wider mb-4">
