@@ -48,32 +48,15 @@ export function HeroSection() {
         </div>
 
         {/* Tagline */}
-        <p className="text-[#ddd] text-base md:text-lg tracking-[0.15em] mb-4 max-w-xl mx-auto leading-relaxed">
+        <p className="text-[#ddd] text-base md:text-lg tracking-[0.15em] mb-10 max-w-xl mx-auto leading-relaxed">
           A floresta chama. São Paulo escuta.
         </p>
-        <p className="text-[--color-dourado] text-sm tracking-[0.2em] uppercase mb-10">
-          Ayahuasca · Rapé · Sananga
-        </p>
-
-        {/* Divisor kene dourado */}
-        <div className="flex justify-center mb-10">
-          <svg viewBox="0 0 280 10" width="240" height="10" xmlns="http://www.w3.org/2000/svg">
-            {Array.from({ length: 14 }).map((_, i) => (
-              <polygon
-                key={i}
-                points={`${i * 20},10 ${i * 20 + 10},0 ${i * 20 + 20},10`}
-                fill="#C9A84C"
-                opacity={i % 2 === 0 ? '1' : '0.4'}
-              />
-            ))}
-          </svg>
-        </div>
 
         {/* CTAs */}
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
           <Link
             href="/eventos"
-            className="bg-[--color-dourado] text-[#0D0D0D] px-10 py-4 font-[--font-titulo] font-bold tracking-[0.2em] uppercase text-sm hover:bg-[--color-dourado-claro] transition-all hover:scale-105 shadow-2xl"
+            className="border border-white/40 text-white px-10 py-4 font-[--font-titulo] font-bold tracking-[0.2em] uppercase text-sm hover:border-[--color-dourado] hover:text-[--color-dourado] transition-all backdrop-blur-sm"
           >
             Próximas Cerimônias
           </Link>
@@ -85,6 +68,16 @@ export function HeroSection() {
           >
             Falar pelo WhatsApp
           </a>
+        </div>
+      </div>
+
+      {/* Scroll indicator animado */}
+      <div className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 z-10">
+        <span className="text-white/50 text-[10px] tracking-[0.3em] uppercase">Rolar</span>
+        <div className="animate-bounce">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 5v14M5 12l7 7 7-7" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" strokeOpacity="0.5"/>
+          </svg>
         </div>
       </div>
 
