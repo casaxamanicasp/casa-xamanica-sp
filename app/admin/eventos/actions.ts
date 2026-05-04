@@ -5,6 +5,35 @@ import { revalidatePath } from 'next/cache'
 import { redirect } from 'next/navigation'
 import slugify from 'slugify'
 
+export async function duplicateEvent(formData: FormData) {
+  const id = formData.get('id') as string
+  const supabase = createAdminClient()
+
+  const { data: original } = await supabase
+    .from('events')
+    .select('*')
+    .eq('id', id)
+    .single()
+
+  if (!original) return
+
+  const { id: _id, created_at: _ca, ...rest } = original
+
+  const newTitle = `Cópia de ${rest.title}`
+  const newSlug = slugify(newTitle, { lower: true, strict: true, locale: 'pt' }) + '-' + Date.now()
+
+  const duplicate = {
+    ...rest,
+    title: newTitle,
+    slug: newSlug,
+    is_active: false,
+    spots_available: rest.spots_total,
+  }
+
+  await supabase.from('events').insert(duplicate)
+  revalidatePath('/admin/eventos')
+}
+
 export async function deleteEvent(formData: FormData) {
   const id = formData.get('id') as string
   const supabase = createAdminClient()

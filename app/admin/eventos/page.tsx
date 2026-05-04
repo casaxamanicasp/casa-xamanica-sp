@@ -3,6 +3,7 @@ import Link from 'next/link'
 import { format } from 'date-fns'
 import { ptBR } from 'date-fns/locale'
 import { DeleteEventButton } from './DeleteEventButton'
+import { DuplicateEventButton } from './DuplicateEventButton'
 
 export default async function AdminEventosPage() {
   try {
@@ -59,6 +60,7 @@ export default async function AdminEventosPage() {
                   <td className="px-4 py-3">
                     <div className="flex items-center gap-3">
                       <Link href={`/admin/eventos/${event.id}`} className="text-xs text-[--color-floresta] hover:underline">Editar</Link>
+                      <DuplicateEventButton id={event.id} />
                       <DeleteEventButton id={event.id} />
                     </div>
                   </td>
