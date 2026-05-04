@@ -9,7 +9,7 @@ export function HeroSection() {
 
       {/* Foto de fundo */}
       <Image
-        src="/hero-bg.jpg"
+        src="/hero-bg.png"
         alt="Cerimônia Casa Xamânica SP"
         fill
         className="object-cover object-top"
