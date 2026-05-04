@@ -17,18 +17,21 @@ export function SobreSection() {
           {/* Lado texto */}
           <div className="flex flex-col justify-center px-10 md:px-16 py-16">
             <p className="text-[--color-dourado] text-xs tracking-[0.5em] uppercase mb-4">Quem Somos</p>
-            <h2 className="font-[--font-titulo] text-3xl md:text-4xl font-bold text-white mb-6 leading-tight tracking-wide">
+            <h2 className="font-[--font-titulo] text-3xl md:text-4xl font-bold mb-6 leading-tight tracking-wide" style={{ color: '#2D4A2D' }}>
               A MISSÃO DA<br />CASA XAMÂNICA SP
             </h2>
             <div className="space-y-4 text-[#aaa] text-sm leading-relaxed mb-8">
               <p>
-                Somos um instituto de medicina tradicional indígena, dedicado à realização de cerimônias sagradas com as plantas de poder da floresta amazônica — no coração de São Paulo.
+                Somos uma Casa Xamânica dedicada ao cuidado do corpo, da mente e do espírito, guiados pelos saberes ancestrais dos povos da floresta. Nosso propósito é criar um espaço seguro, sagrado e acolhedor para aqueles que sentem o chamado do autoconhecimento, da cura e da reconexão com sua essência.
               </p>
               <p>
-                Nosso trabalho une o conhecimento ancestral dos povos indígenas com a busca contemporânea por cura, autoconhecimento e reconexão com a natureza.
+                Trabalhamos em parceria e respeito com as tradições indígenas, honrando seus rituais, cantos, medicinas e ensinamentos. Acreditamos na força da natureza como caminho de equilíbrio e na espiritualidade como ponte para uma vida mais consciente.
               </p>
               <p>
-                Realizamos cerimônias com Ayahuasca, Rapé e Sananga em São Paulo e em outros estados do Brasil, sempre num ambiente seguro, acolhedor e espiritualmente preparado.
+                Nossos trabalhos são conduzidos com seriedade, responsabilidade e amor, oferecendo vivências, cerimônias e encontros que auxiliam cada pessoa em seu próprio processo de transformação.
+              </p>
+              <p>
+                Aqui, cada jornada é única. Cada história é respeitada. E cada passo é guiado com presença, verdade e conexão.
               </p>
             </div>
 
