@@ -12,7 +12,7 @@ export function HeroSection() {
         src="/hero-bg.jpg"
         alt="Cerimônia Casa Xamânica SP"
         fill
-        className="object-cover object-center"
+        className="object-cover object-top"
         priority
         quality={85}
       />
@@ -72,11 +72,11 @@ export function HeroSection() {
       </div>
 
       {/* Scroll indicator animado */}
-      <div className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 z-10">
-        <span className="text-white/50 text-[10px] tracking-[0.3em] uppercase">Rolar</span>
+      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 z-20">
+        <span className="text-white text-[11px] tracking-[0.35em] uppercase font-medium">Rolar</span>
         <div className="animate-bounce">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M12 5v14M5 12l7 7 7-7" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" strokeOpacity="0.5"/>
+          <svg width="36" height="36" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 5v14M5 12l7 7 7-7" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
           </svg>
         </div>
       </div>
