@@ -103,12 +103,14 @@ function EventCard({ event, reverse }: { event: Event; reverse: boolean }) {
               </svg>
             </div>
           )}
-          {/* Badge vagas — só mostra se esgotado ou últimas vagas */}
-          {(sold || spotsLeft <= 5) && (
-            <div className={`absolute top-3 left-3 px-2 py-0.5 text-xs font-bold tracking-wide ${sold ? 'bg-red-700 text-white' : 'bg-[--color-dourado] text-[#0D0D0D]'}`}>
-              {sold ? 'ESGOTADO' : `${spotsLeft} VAGAS`}
-            </div>
-          )}
+          {/* Badge vagas */}
+          <div className={`absolute top-3 left-3 px-2 py-0.5 text-xs font-bold tracking-wide ${
+            sold ? 'bg-red-700 text-white' :
+            spotsLeft <= 5 ? 'bg-[--color-dourado] text-[#0D0D0D]' :
+            'bg-white text-[#0D0D0D]'
+          }`}>
+            {sold ? 'ESGOTADO' : `${spotsLeft} VAGAS`}
+          </div>
         </div>
 
         {/* Conteúdo */}
