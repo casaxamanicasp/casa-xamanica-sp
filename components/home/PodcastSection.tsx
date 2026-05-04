@@ -37,11 +37,11 @@ export function PodcastSection({ limit }: { limit?: number }) {
 
       <div className="relative z-10 max-w-6xl mx-auto">
         <div className="text-center mb-12">
-          <p className="text-[--color-dourado] text-xs tracking-[0.5em] uppercase mb-3">Mídia</p>
-          <h2 className="font-[--font-titulo] text-3xl md:text-4xl font-bold text-[--color-bege] tracking-wider mb-4">
+          <p className="text-white/60 text-xs tracking-[0.5em] uppercase mb-3">Mídia</p>
+          <h2 className="font-[--font-titulo] text-3xl md:text-4xl font-bold text-white tracking-wider mb-4">
             PODCASTS
           </h2>
-          <p className="text-[--color-bege] opacity-70 max-w-xl mx-auto text-sm leading-relaxed">
+          <p className="text-white/70 max-w-xl mx-auto text-sm leading-relaxed">
             Conversas sobre medicina ancestral, espiritualidade e o caminho xamânico.
           </p>
         </div>
@@ -65,7 +65,7 @@ export function PodcastSection({ limit }: { limit?: number }) {
         <div className="text-center mt-10">
           <Link
             href="/midia"
-            className="inline-block border border-[--color-dourado] text-[--color-dourado] px-10 py-3 font-[--font-titulo] font-bold text-xs tracking-[0.2em] uppercase hover:bg-[--color-dourado] hover:text-[#0D0D0D] transition-all"
+            className="inline-block border border-white text-white px-10 py-3 font-[--font-titulo] font-bold text-xs tracking-[0.2em] uppercase hover:bg-white hover:text-[#0D0D0D] transition-all"
           >
             Ver Toda a Mídia
           </Link>
