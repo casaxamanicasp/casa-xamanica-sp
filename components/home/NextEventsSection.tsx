@@ -41,7 +41,7 @@ export function NextEventsSection({ events }: { events: Event[] }) {
         <div className="text-center mt-12">
           <Link
             href="/eventos"
-            className="inline-block border border-[--color-dourado] text-[--color-dourado] px-10 py-3 font-[--font-titulo] font-bold text-xs tracking-[0.2em] uppercase hover:bg-[--color-dourado] hover:text-[#0D0D0D] transition-all"
+            className="inline-block border border-white text-white px-10 py-3 font-[--font-titulo] font-bold text-xs tracking-[0.2em] uppercase hover:bg-white hover:text-[#0D0D0D] transition-all"
           >
             Ver Todas as Cerimônias
           </Link>
