@@ -5,6 +5,7 @@ import { upsertEvent } from './actions'
 import { useState } from 'react'
 
 export function EventForm({ event }: { event?: Event }) {
+  const [eventType, setEventType] = useState(event?.event_type ?? 'cerimonia')
   const [pricingTiers, setPricingTiers] = useState(
     event?.pricing_tiers ?? [{ name: '1 lote', deadline: '', price_cents: 30000 }]
   )
@@ -37,7 +38,8 @@ export function EventForm({ event }: { event?: Event }) {
                   type="radio"
                   name="event_type"
                   value={opt.value}
-                  defaultChecked={(event?.event_type ?? 'cerimonia') === opt.value}
+                  checked={eventType === opt.value}
+                  onChange={() => setEventType(opt.value as 'cerimonia' | 'vivencia')}
                   className="accent-[--color-floresta]"
                 />
                 <span className="text-sm font-medium">{opt.label}</span>
@@ -47,7 +49,10 @@ export function EventForm({ event }: { event?: Event }) {
         </div>
 
         <FormField label="Título *" name="title" defaultValue={event?.title} required />
-        <FormField label="Data e Hora *" name="date" type="datetime-local" defaultValue={event?.date?.slice(0, 16)} required />
+        <FormField label="Data e Hora de Início *" name="date" type="datetime-local" defaultValue={event?.date?.slice(0, 16)} required />
+        {eventType === 'vivencia' && (
+          <FormField label="Data e Hora de Término" name="end_date" type="datetime-local" defaultValue={event?.end_date?.slice(0, 16) ?? ''} />
+        )}
         <FormField label="Local" name="location_name" defaultValue={event?.location_name ?? 'Casa Árvore da Vida'} />
         <FormField label="Endereço" name="address" defaultValue={event?.address} />
         <FormField label="Link Google Maps" name="maps_link" defaultValue={event?.maps_link ?? ''} />

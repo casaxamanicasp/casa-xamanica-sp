@@ -32,6 +32,7 @@ export type Event = {
   transfer_location: string | null
   cancellation_policy: string
   orientations: string | null
+  end_date: string | null
   is_active: boolean
   created_at: string
 }

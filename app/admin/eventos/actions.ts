@@ -54,12 +54,16 @@ export async function upsertEvent(formData: FormData) {
 
   const eventType = (formData.get('event_type') as string) || 'cerimonia'
 
+  const rawEndDate = formData.get('end_date') as string | null
+  const endDate = rawEndDate && rawEndDate.trim() ? rawEndDate : null
+
   const payload = {
     title,
     slug,
     event_type: eventType,
     description: formData.get('description') as string,
     date: formData.get('date') as string,
+    end_date: endDate,
     location_name: formData.get('location_name') as string,
     address: formData.get('address') as string,
     maps_link: formData.get('maps_link') as string,
