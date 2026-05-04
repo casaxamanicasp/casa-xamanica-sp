@@ -1,6 +1,7 @@
 'use client'
 
 import Link from 'next/link'
+import Image from 'next/image'
 import { useState } from 'react'
 
 const navLinks = [
@@ -22,14 +23,15 @@ export function Header() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16 md:h-20">
           {/* Logo */}
-          <Link href="/" className="flex items-center gap-3 group">
-            <LogoIcon />
-            <div className="leading-tight">
-              <p className="font-[--font-titulo] text-base md:text-lg font-bold tracking-widest text-white group-hover:text-[--color-dourado] transition-colors">
-                CASA XAMÂNICA
-              </p>
-              <p className="text-[10px] tracking-[0.4em] text-[--color-dourado] uppercase">São Paulo</p>
-            </div>
+          <Link href="/" className="flex items-center group">
+            <Image
+              src="/logo-branco.png"
+              alt="Casa Xamânica SP"
+              width={180}
+              height={72}
+              className="h-12 md:h-14 w-auto object-contain group-hover:opacity-80 transition-opacity"
+              priority
+            />
           </Link>
 
           {/* Desktop nav */}
