@@ -1,8 +1,9 @@
 import { createAdminClient } from '@/lib/supabase/admin'
 import Link from 'next/link'
-import { deleteSupporter } from './actions'
+import { DeleteSupporterButton } from './DeleteSupporterButton'
 
 export default async function AdminApoiadoresPage() {
+  try {
   const supabase = createAdminClient()
   const { data: supporters } = await supabase
     .from('supporters')
@@ -44,10 +45,7 @@ export default async function AdminApoiadoresPage() {
                 <td className="px-4 py-3">
                   <div className="flex items-center gap-3">
                     <Link href={`/admin/apoiadores/${s.id}`} className="text-xs text-[--color-floresta] hover:underline">Editar</Link>
-                    <form action={deleteSupporter}>
-                      <input type="hidden" name="id" value={s.id} />
-                      <button type="submit" className="text-xs text-red-500 hover:underline" onClick={(e) => { if (!confirm('Excluir apoiador?')) e.preventDefault() }}>Excluir</button>
-                    </form>
+                    <DeleteSupporterButton id={s.id} />
                   </div>
                 </td>
               </tr>
@@ -58,4 +56,7 @@ export default async function AdminApoiadoresPage() {
       </div>
     </div>
   )
+  } catch (e: any) {
+    return <div className="p-8 text-red-600 font-mono text-sm bg-red-50 rounded whitespace-pre-wrap"><strong>Erro:</strong> {e?.message ?? String(e)}</div>
+  }
 }
