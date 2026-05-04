@@ -102,7 +102,7 @@ function EventCard({ event, reverse }: { event: Event; reverse: boolean }) {
 
         {/* Conteúdo */}
         <div className="md:w-[55%] flex flex-col justify-center px-8 py-10">
-          <div className="flex items-center gap-2 text-xs text-[--color-dourado] font-medium mb-3 uppercase tracking-[0.15em]">
+          <div className="flex items-center gap-2 text-xs text-white font-medium mb-3 uppercase tracking-[0.15em]">
             <CalendarIcon />
             {format(date, "dd 'de' MMMM 'de' yyyy", { locale: ptBR })}
           </div>
@@ -127,7 +127,7 @@ function EventCard({ event, reverse }: { event: Event; reverse: boolean }) {
           )}
 
           <div className="flex items-center justify-between">
-            <span className="font-[--font-titulo] text-2xl font-bold text-[--color-dourado]">
+            <span className="font-[--font-titulo] text-2xl font-bold text-white">
               {price > 0 ? `R$ ${(price / 100).toFixed(0)}` : 'Gratuito'}
             </span>
             <span className="text-xs font-bold text-white border border-[#333] px-5 py-2 tracking-[0.15em] uppercase group-hover:border-[--color-dourado] group-hover:text-[--color-dourado] transition-colors">
