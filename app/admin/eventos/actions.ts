@@ -87,6 +87,8 @@ export async function upsertEvent(formData: FormData) {
     transfer_location: formData.get('transfer_location') as string,
     cancellation_policy: formData.get('cancellation_policy') as string,
     orientations: formData.get('orientations') as string,
+    how_to_get_there: (formData.get('how_to_get_there') as string)?.trim() || null,
+    what_to_bring: (formData.get('what_to_bring') as string)?.trim() || null,
     is_active: formData.get('is_active') === 'on',
   }
 

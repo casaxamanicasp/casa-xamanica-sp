@@ -32,6 +32,8 @@ export type Event = {
   transfer_location: string | null
   cancellation_policy: string
   orientations: string | null
+  how_to_get_there: string | null   // Como chegar
+  what_to_bring: string | null      // O que levar (vivências)
   end_date: string | null
   is_active: boolean
   created_at: string

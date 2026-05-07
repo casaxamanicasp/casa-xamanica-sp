@@ -64,6 +64,7 @@ export function EventForm({ event }: { event?: Event }) {
         <FormField label="Local" name="location_name" defaultValue={event?.location_name ?? 'Casa Árvore da Vida'} />
         <FormField label="Endereço" name="address" defaultValue={event?.address} />
         <FormField label="Link Google Maps" name="maps_link" defaultValue={event?.maps_link ?? ''} />
+        <TextAreaField label="Como Chegar" name="how_to_get_there" defaultValue={event?.how_to_get_there ?? ''} rows={3} />
         <div className="grid grid-cols-2 gap-4">
           <FormField label="Total de Vagas" name="spots_total" type="number" defaultValue={String(event?.spots_total ?? 30)} />
           <FormField label="Vagas Disponíveis" name="spots_available" type="number" defaultValue={String(event?.spots_available ?? 30)} />
@@ -146,6 +147,9 @@ export function EventForm({ event }: { event?: Event }) {
         <h2 className="font-bold text-[--color-floresta-escuro] text-sm uppercase tracking-wide border-b pb-2">Textos</h2>
         <TextAreaField label="Descrição (HTML)" name="description" defaultValue={event?.description ?? ''} rows={6} />
         <TextAreaField label="Orientações Gerais (HTML)" name="orientations" defaultValue={event?.orientations ?? ''} rows={4} />
+        {eventType === 'vivencia' && (
+          <TextAreaField label="O que Levar" name="what_to_bring" defaultValue={event?.what_to_bring ?? ''} rows={4} />
+        )}
         <TextAreaField label="Política de Cancelamento" name="cancellation_policy" defaultValue={event?.cancellation_policy ?? 'Sem reembolso após pagamento. O valor ficará de crédito para uma próxima cerimônia.'} rows={2} />
       </div>
 
