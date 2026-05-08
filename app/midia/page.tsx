@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import { KeneDivider } from '@/components/ui/KeneDivider'
 
 export const metadata: Metadata = {
   title: 'Mídia',
@@ -31,6 +32,8 @@ export default function MidiaPage() {
           Podcasts, entrevistas e conversas sobre medicina ancestral e o caminho xamânico.
         </p>
       </div>
+
+      <KeneDivider />
 
       <div className="max-w-6xl mx-auto px-4 py-12">
 

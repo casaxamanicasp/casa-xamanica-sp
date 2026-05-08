@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import { KeneDivider } from '@/components/ui/KeneDivider'
 
 export const metadata: Metadata = {
   title: 'Contato',
@@ -16,6 +17,8 @@ export default function ContatoPage() {
         <p className="text-[--color-dourado] text-xs tracking-[0.5em] uppercase mb-3">Fale Conosco</p>
         <h1 className="font-[--font-titulo] text-4xl md:text-5xl font-bold text-[--color-bege] mb-4 tracking-wider">CONTATO</h1>
       </div>
+
+      <KeneDivider />
 
       <div className="max-w-5xl mx-auto px-4 py-12">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">

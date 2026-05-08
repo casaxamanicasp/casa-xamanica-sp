@@ -1,5 +1,6 @@
 import { createClient } from '@/lib/supabase/server'
 import type { Metadata } from 'next'
+import { KeneDivider } from '@/components/ui/KeneDivider'
 
 export const metadata: Metadata = {
   title: 'Galeria',
@@ -31,6 +32,8 @@ export default async function GaleriaPage() {
           Registros das cerimônias, vivências e momentos sagrados da Casa Xamânica SP.
         </p>
       </div>
+
+      <KeneDivider />
 
       <div className="max-w-6xl mx-auto px-4 py-12">
         {(images ?? []).length === 0 ? (

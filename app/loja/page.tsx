@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import { KeneDivider } from '@/components/ui/KeneDivider'
 
 export const metadata: Metadata = {
   title: 'Loja — Em breve',
@@ -15,6 +16,8 @@ export default function LojaPage() {
           Produtos sagrados e artesanatos da floresta.
         </p>
       </div>
+
+      <KeneDivider />
 
       <div className="max-w-6xl mx-auto px-4 py-24 flex flex-col items-center text-center">
         <p className="text-5xl mb-6">🌿</p>

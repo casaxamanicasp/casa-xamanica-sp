@@ -1,6 +1,7 @@
 import { createClient } from '@/lib/supabase/server'
 import { Supporter } from '@/lib/types'
 import type { Metadata } from 'next'
+import { KeneDivider } from '@/components/ui/KeneDivider'
 
 export const metadata: Metadata = {
   title: 'Apoiadores',
@@ -28,6 +29,8 @@ export default async function ApoiadoresPage() {
           Conheça os parceiros e apoiadores que tornam possível o nosso trabalho.
         </p>
       </div>
+
+      <KeneDivider />
 
       <div className="max-w-5xl mx-auto px-4 py-12">
         {all.length === 0 ? (

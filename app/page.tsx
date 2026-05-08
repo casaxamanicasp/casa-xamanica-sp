@@ -9,6 +9,7 @@ import { InstagramFeed } from '@/components/home/InstagramFeed'
 import { YouTubeSection } from '@/components/home/YouTubeSection'
 import { PodcastSection } from '@/components/home/PodcastSection'
 import { Event } from '@/lib/types'
+import { KeneDivider } from '@/components/ui/KeneDivider'
 
 export default async function HomePage() {
   const supabase = await createClient()
@@ -29,11 +30,17 @@ export default async function HomePage() {
   return (
     <>
       <HeroSection />
+      <KeneDivider variant="dark" />
       <NextEventsSection events={(events ?? []) as Event[]} />
+      <KeneDivider variant="dark" />
       <SobreSection />
+      <KeneDivider variant="dark" />
       <PodcastSection />
+      <KeneDivider variant="dark" />
       <YouTubeSection videos={youtubeVideos} />
+      <KeneDivider variant="dark" />
       <InstagramFeed posts={instagramPosts} />
+      <KeneDivider variant="dark" />
       <GaleriaSection />
     </>
   )

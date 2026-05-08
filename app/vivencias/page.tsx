@@ -4,6 +4,7 @@ import Link from 'next/link'
 import { format } from 'date-fns'
 import { ptBR } from 'date-fns/locale'
 import type { Metadata } from 'next'
+import { KeneDivider } from '@/components/ui/KeneDivider'
 
 export const metadata: Metadata = {
   title: 'Vivências',
@@ -42,6 +43,8 @@ export default async function VivenciasPage() {
           Retiros, imersões e encontros de aprofundamento — um mergulho mais profundo na medicina ancestral indígena.
         </p>
       </div>
+
+      <KeneDivider />
 
       <div className="max-w-5xl mx-auto px-4 py-12">
 {upcoming.length === 0 ? (
