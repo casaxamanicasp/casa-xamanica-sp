@@ -105,8 +105,8 @@ function EventRow({ event, past = false }: { event: Event; past?: boolean }) {
       <div className="bg-white rounded-lg border border-[--color-bege-escuro] shadow-[--shadow-card] hover:shadow-[--shadow-hover] transition-all overflow-hidden flex flex-col md:flex-row">
         {/* Foto de capa (mobile: topo, desktop: lado esquerdo) */}
         {event.cover_image && (
-          <div className="md:hidden w-full h-48 overflow-hidden">
-            <img src={event.cover_image} alt={event.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+          <div className="md:hidden w-full overflow-hidden">
+            <img src={event.cover_image} alt={event.title} className="w-full h-auto block" />
           </div>
         )}
 
