@@ -30,17 +30,11 @@ export default async function HomePage() {
   return (
     <>
       <HeroSection />
-      <TribalDivider className="hidden md:block" />
       <NextEventsSection events={(events ?? []) as Event[]} />
-      <TribalDivider className="hidden md:block" />
       <SobreSection />
-      <TribalDivider flip className="hidden md:block" />
       <PodcastSection />
-      {youtubeVideos.length > 0 && <TribalDivider flip className="hidden md:block" />}
       <YouTubeSection videos={youtubeVideos} />
-      <TribalDivider className="hidden md:block" />
       <InstagramFeed posts={instagramPosts} />
-      <TribalDivider flip className="hidden md:block" />
       <GaleriaSection />
     </>
   )
