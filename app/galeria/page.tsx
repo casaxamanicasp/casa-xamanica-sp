@@ -1,6 +1,5 @@
 import { createClient } from '@/lib/supabase/server'
 import type { Metadata } from 'next'
-import { TribalDivider } from '@/components/ui/TribalDivider'
 
 export const metadata: Metadata = {
   title: 'Galeria',
@@ -32,8 +31,6 @@ export default async function GaleriaPage() {
           Registros das cerimônias, vivências e momentos sagrados da Casa Xamânica SP.
         </p>
       </div>
-
-      <TribalDivider />
 
       <div className="max-w-6xl mx-auto px-4 py-12">
         {(images ?? []).length === 0 ? (

@@ -1,5 +1,4 @@
 import type { Metadata } from 'next'
-import { TribalDivider } from '@/components/ui/TribalDivider'
 
 export const metadata: Metadata = {
   title: 'Mídia',
@@ -32,8 +31,6 @@ export default function MidiaPage() {
           Podcasts, entrevistas e conversas sobre medicina ancestral e o caminho xamânico.
         </p>
       </div>
-
-      <TribalDivider />
 
       <div className="max-w-6xl mx-auto px-4 py-12">
 

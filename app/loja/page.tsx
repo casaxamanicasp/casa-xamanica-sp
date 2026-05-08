@@ -1,5 +1,4 @@
 import type { Metadata } from 'next'
-import { TribalDivider } from '@/components/ui/TribalDivider'
 
 export const metadata: Metadata = {
   title: 'Loja — Em breve',
@@ -16,8 +15,6 @@ export default function LojaPage() {
           Produtos sagrados e artesanatos da floresta.
         </p>
       </div>
-
-      <TribalDivider />
 
       <div className="max-w-6xl mx-auto px-4 py-24 flex flex-col items-center text-center">
         <p className="text-5xl mb-6">🌿</p>

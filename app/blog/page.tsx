@@ -4,7 +4,6 @@ import Link from 'next/link'
 import { format } from 'date-fns'
 import { ptBR } from 'date-fns/locale'
 import type { Metadata } from 'next'
-import { TribalDivider } from '@/components/ui/TribalDivider'
 
 export const metadata: Metadata = {
   title: 'Blog',
@@ -28,8 +27,6 @@ export default async function BlogPage() {
           Artigos sobre xamanismo, plantas de poder, cerimônias e autoconhecimento.
         </p>
       </div>
-
-      <TribalDivider />
 
       <div className="max-w-4xl mx-auto px-4 py-12">
         {(posts ?? []).length === 0 ? (
