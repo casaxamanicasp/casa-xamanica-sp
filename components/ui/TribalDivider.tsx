@@ -1,4 +1,4 @@
-export function TribalDivider({ flip = false }: { flip?: boolean }) {
+export function TribalDivider({ flip = false, className }: { flip?: boolean; className?: string }) {
   const H = 64          // viewBox height
   const displayH = Math.round(H * 0.7) // altura renderizada (−30%)
 
@@ -19,7 +19,7 @@ export function TribalDivider({ flip = false }: { flip?: boolean }) {
 
   return (
     <div
-      className="w-full overflow-hidden"
+      className={`w-full overflow-hidden${className ? ` ${className}` : ''}`}
       style={{ lineHeight: 0, transform: flip ? 'scaleY(-1)' : undefined }}
       aria-hidden="true"
     >

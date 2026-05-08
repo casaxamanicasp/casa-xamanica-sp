@@ -4,7 +4,7 @@ export function SobreSection() {
       <div className="max-w-7xl mx-auto">
         <div className="grid grid-cols-1 md:grid-cols-2 min-h-[500px]">
           {/* Foto real — quadrada centralizada */}
-          <div className="flex items-center justify-center bg-[--color-floresta-escuro] py-12 px-8">
+          <div className="flex items-center justify-center bg-[--color-floresta-escuro] pt-10 pb-2 md:py-12 px-8">
             <div className="relative w-[360px] h-[360px] md:w-[460px] md:h-[460px] overflow-hidden shrink-0">
               <img
                 src="https://ejgoiouwzkmxuuvtxulv.supabase.co/storage/v1/object/public/events/foto%20quem%20somos.jpeg"
